@@ -11,7 +11,11 @@ namespace DoAN_QuanLyBaiHat
     public class DatabaseConnection
     {
   
-        private static string strConn = "Server=localhost;Database=qlBaiHat;User=root;Password=1234;Charset=utf8;";
+        private static string strConn = "Server=localhost;" +
+            "Database=qlBaiHat;" +
+            "User=root;" +
+            "Password=1234;" +
+            "Charset=utf8;";
         // Thêm Charset=utf8 vào cuối
      
 

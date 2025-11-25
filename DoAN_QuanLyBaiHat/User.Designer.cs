@@ -40,7 +40,10 @@
             // 
             // pnlBody
             // 
+            this.pnlBody.AutoScroll = true;
             this.pnlBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.pnlBody.BackgroundImage = global::DoAN_QuanLyBaiHat.Properties.Resources.Gemini_Generated_Image_3wpmbg3wpmbg3wpm;
+            this.pnlBody.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlBody.Location = new System.Drawing.Point(208, 51);
             this.pnlBody.Name = "pnlBody";
             this.pnlBody.Size = new System.Drawing.Size(970, 615);

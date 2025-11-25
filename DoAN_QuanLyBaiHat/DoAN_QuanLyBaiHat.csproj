@@ -124,11 +124,23 @@
     <Compile Include="UserConTroller\SongItem.Designer.cs">
       <DependentUpon>SongItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserConTroller\UC_Albums.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConTroller\UC_Albums.Designer.cs">
+      <DependentUpon>UC_Albums.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserConTroller\UC_BaiHat.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserConTroller\UC_BaiHat.Designer.cs">
       <DependentUpon>UC_BaiHat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserConTroller\UC_CaSi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConTroller\UC_CaSi.Designer.cs">
+      <DependentUpon>UC_CaSi.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -155,8 +167,14 @@
     <EmbeddedResource Include="UserConTroller\SongItem.resx">
       <DependentUpon>SongItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserConTroller\UC_Albums.resx">
+      <DependentUpon>UC_Albums.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserConTroller\UC_BaiHat.resx">
       <DependentUpon>UC_BaiHat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConTroller\UC_CaSi.resx">
+      <DependentUpon>UC_CaSi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\DoAN_QuanLyBaiHat.exe.config" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
@@ -221,6 +239,7 @@
     <Content Include="obj\Debug\DoAN_QuanLyBaiHat.exe" />
     <Content Include="obj\Debug\DoAN_QuanLyBaiHat.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\Gemini_Generated_Image_3wpmbg3wpmbg3wpm.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

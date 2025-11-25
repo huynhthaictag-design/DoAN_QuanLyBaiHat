@@ -17,7 +17,7 @@ namespace DoAN_QuanLyBaiHat
         {
             InitializeComponent();
         }
-        public void loadDanhSachBaiHat()
+        public void loadDanhSachBaiHat(FlowLayoutPanel flp)
         {
             // Giả sử bạn có vòng lặp lấy dữ liệu từ CSDL hoặc List bài hát
             for (int i = 1; i <= 10; i++)
@@ -33,13 +33,14 @@ namespace DoAN_QuanLyBaiHat
                 item.Margin = new Padding(10);
 
                 // 4. Thêm vào FlowLayoutPanel
-                flpDanhSachBaiHat.Controls.Add(item);
+                flp.Controls.Add(item);
             }
         }
 
         private void UC_BaiHat_Load(object sender, EventArgs e)
         {
-            loadDanhSachBaiHat();
+            loadDanhSachBaiHat(flpDsThinhHanh);
+            loadDanhSachBaiHat(flpDsBaiHat);
         }
     }
 }

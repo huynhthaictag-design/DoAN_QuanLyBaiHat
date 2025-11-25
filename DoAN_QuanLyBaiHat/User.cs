@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoAN_QuanLyBaiHat.UserConTroller;
 
 namespace DoAN_QuanLyBaiHat
 {
@@ -41,12 +42,14 @@ namespace DoAN_QuanLyBaiHat
 
         private void btnCaSi_Click(object sender, EventArgs e)
         {
-
+            UC_CaSi uC_CaSi = new UC_CaSi();
+            AddUserControl(uC_CaSi);
         }
 
         private void btnAlbums_Click(object sender, EventArgs e)
         {
-
+            UC_Albums uC_Albums = new UC_Albums();
+            AddUserControl(uC_Albums);
         }
     }
 }

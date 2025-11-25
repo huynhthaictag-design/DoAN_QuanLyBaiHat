@@ -63,6 +63,16 @@ namespace DoAN_QuanLyBaiHat.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_3wpmbg3wpmbg3wpm {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_3wpmbg3wpmbg3wpm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap unnamed__1_ {
             get {
                 object obj = ResourceManager.GetObject("unnamed (1)", resourceCulture);
