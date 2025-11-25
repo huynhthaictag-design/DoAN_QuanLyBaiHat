@@ -95,52 +95,87 @@ namespace DoAN_QuanLyBaiHat
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra rỗng
+            // 1. Kiểm tra tên bài hát
             if (txtTenBaiHat.Text == "") { MessageBox.Show("Nhập tên bài hát!"); return; }
 
-            // 2. Xử lý dữ liệu trên DataSet (Bộ nhớ tạm)
-            DataRow row;
-            if (flagMode == 1) // Đang THÊM
-            {
-                row = ds.Tables["tblBaiHat"].NewRow();
-                GanDuLieu(row);
-                ds.Tables["tblBaiHat"].Rows.Add(row);
-            }
-            else if (flagMode == 2) // Đang SỬA
-            {
-                int index = dgvBaiHat.CurrentRow.Index;
-                row = ds.Tables["tblBaiHat"].Rows[index];
-                GanDuLieu(row);
-            }
+            // --- XỬ LÝ COPY NHẠC (PHẦN MỚI) ---
+            string tenFileLuuDB = ""; // Biến này để lưu vào CSDL
 
-            // 3. Cập nhật xuống CSDL (PHẦN QUAN TRỌNG ĐÃ SỬA)
             try
             {
-                // Tạo kết nối mới tinh
-                using (MySqlConnection conn = DatabaseConnection.GetConnection())
+                // a. Nếu người dùng ĐANG CHỌN file mới (Đường dẫn chứa dấu '\')
+                if (txtDuongDan.Text.Contains("\\"))
                 {
-                    conn.Open(); // Mở cổng
+                    // Tạo thư mục MusicData nếu chưa có
+                    string folderPath = System.IO.Path.Combine(Application.StartupPath, "MusicData");
+                    if (!System.IO.Directory.Exists(folderPath))
+                    {
+                        System.IO.Directory.CreateDirectory(folderPath);
+                    }
 
-                    // Gán kết nối mới này cho Adapter cũ
-                    daBaiHat.SelectCommand.Connection = conn;
+                    // Lấy tên file gốc (ví dụ: "LacTroi.mp3")
+                    string sourcePath = txtDuongDan.Text;
+                    string fileName = System.IO.Path.GetFileName(sourcePath);
 
-                    // Yêu cầu CommandBuilder tạo lại lệnh Lưu dựa trên kết nối mới
-                    MySqlCommandBuilder builder = new MySqlCommandBuilder(daBaiHat);
+                    // Tạo đường dẫn đích để copy đến
+                    string destPath = System.IO.Path.Combine(folderPath, fileName);
 
-                    // Thực hiện Lưu
-                    daBaiHat.Update(ds, "tblBaiHat");
-                    MessageBox.Show("Đã lưu thành công!");
+                    // COPY FILE (ghi đè nếu trùng tên)
+                    System.IO.File.Copy(sourcePath, destPath, true);
 
-                    // Tải lại dữ liệu để cập nhật ID mới nhất (quan trọng khi thêm mới)
-                    ds.Clear();
-                    daBaiHat.Fill(ds, "tblBaiHat");
-
-                    HienKhungNhap(false); // Ẩn khung nhập, hiện lại lưới
+                    // Gán tên file để tí nữa lưu vào DB
+                    tenFileLuuDB = fileName;
+                }
+                else
+                {
+                    // b. Nếu KHÔNG chọn nhạc mới (đang sửa thông tin khác), giữ nguyên tên cũ
+                    tenFileLuuDB = txtDuongDan.Text;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi lưu: " + ex.Message);
+                MessageBox.Show("Lỗi khi copy nhạc: " + ex.Message);
+                return; // Dừng lại nếu copy lỗi
+            }
+
+            // --- LƯU VÀO DATABASE (CODE CŨ ĐÃ NÂNG CẤP) ---
+            try
+            {
+                using (MySqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    string sql = "";
+
+                    if (flagMode == 1) // THÊM
+                        sql = "INSERT INTO BaiHat (Ten_Bai_Hat, The_Loai, Ngay_Dang, Lyrics, DuongDan) VALUES (@Ten, @TheLoai, @Ngay, @Loi, @Link)";
+                    else // SỬA
+                        sql = "UPDATE BaiHat SET Ten_Bai_Hat=@Ten, The_Loai=@TheLoai, Ngay_Dang=@Ngay, Lyrics=@Loi, DuongDan=@Link WHERE Bai_Hat_Id=@Id";
+
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    // Gán tham số
+                    cmd.Parameters.AddWithValue("@Ten", txtTenBaiHat.Text);
+                    cmd.Parameters.AddWithValue("@TheLoai", txtTheLoai.Text);
+                    cmd.Parameters.AddWithValue("@Ngay", dtpNgayDang.Value);
+                    cmd.Parameters.AddWithValue("@Loi", richLoiNhac.Text);
+
+                    // QUAN TRỌNG: Chỉ lưu TÊN FILE ngắn gọn
+                    cmd.Parameters.AddWithValue("@Link", tenFileLuuDB);
+
+                    if (flagMode == 2) // Nếu sửa thì cần ID
+                        cmd.Parameters.AddWithValue("@Id", dgvBaiHat.CurrentRow.Cells["Bai_Hat_Id"].Value);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Đã lưu và đồng bộ nhạc thành công!");
+
+                    // Tải lại dữ liệu
+                    LoadData();
+                    HienKhungNhap(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi Database: " + ex.Message);
             }
         }
 
@@ -162,7 +197,46 @@ namespace DoAN_QuanLyBaiHat
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            // 1. Kiểm tra xem đã chọn dòng nào chưa
+            if (dgvBaiHat.CurrentRow == null)
+            {
+                MessageBox.Show("Vui lòng chọn bài hát cần xóa!");
+                return;
+            }
 
+            // 2. Hỏi xác nhận người dùng (Tránh xóa nhầm)
+            DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa bài hát này không?",
+                                              "Xác nhận xóa",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+                    // 3. Xóa dòng đang chọn khỏi DataSet (Bộ nhớ tạm)
+                    // Lưu ý: Khi xóa trên DataGridView, nó sẽ đánh dấu dòng đó là Deleted trong DataTable
+                    dgvBaiHat.Rows.RemoveAt(dgvBaiHat.CurrentRow.Index);
+
+                    // 4. Cập nhật thay đổi xuống Database thật
+                    using (MySqlConnection conn = DatabaseConnection.GetConnection())
+                    {
+                        conn.Open();
+                        daBaiHat.SelectCommand.Connection = conn; // Kết nối mới
+                        MySqlCommandBuilder builder = new MySqlCommandBuilder(daBaiHat);
+
+                        daBaiHat.Update(ds, "tblBaiHat"); // Thực thi lệnh DELETE trong SQL
+
+                        MessageBox.Show("Xóa thành công!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa: " + ex.Message);
+                    // Nếu lỗi, tải lại dữ liệu để hoàn tác thao tác xóa ảo trên lưới
+                    ds.RejectChanges();
+                }
+            }
         }
 
         private void btnChonNhac_Click(object sender, EventArgs e)
@@ -182,6 +256,45 @@ namespace DoAN_QuanLyBaiHat
                 txtDuongDan.Text = openFileDialog.FileName;
             }
         
+    }
+
+        private void pnlNhapLieu_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dgvBaiHat_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvBaiHat.Rows[e.RowIndex];
+
+                // Đổ dữ liệu text lên ô nhập
+                txtTenBaiHat.Text = row.Cells["Ten_Bai_Hat"].Value.ToString();
+                txtTheLoai.Text = row.Cells["The_Loai"].Value.ToString();
+                richLoiNhac.Text = row.Cells["Lyrics"].Value.ToString();
+
+                if (row.Cells["Ngay_Dang"].Value != DBNull.Value)
+                    dtpNgayDang.Value = Convert.ToDateTime(row.Cells["Ngay_Dang"].Value);
+
+                // --- XỬ LÝ ĐƯỜNG DẪN NHẠC ---
+                string tenFile = row.Cells["DuongDan"].Value.ToString();
+
+                // Tái tạo đường dẫn đầy đủ
+                string fullPath = System.IO.Path.Combine(Application.StartupPath, "MusicData", tenFile);
+
+                // Hiển thị tên file lên textbox (chỉ tên ngắn cho đẹp)
+                txtDuongDan.Text = tenFile;
+
+                // Kiểm tra file có tồn tại không rồi mới phát (để tránh lỗi)
+                if (System.IO.File.Exists(fullPath))
+                {
+                    // Code phát nhạc của bạn (Ví dụ dùng Windows Media Player)
+                    // axWindowsMediaPlayer1.URL = fullPath;
+                }
+            
+        }
     }
     }
 }
