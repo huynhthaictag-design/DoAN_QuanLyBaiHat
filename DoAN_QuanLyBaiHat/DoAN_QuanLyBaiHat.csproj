@@ -250,5 +250,8 @@
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <None Include="Resources\Gemini_Generated_Image_3wpmbg3wpmbg3wpm.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AdminController\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
