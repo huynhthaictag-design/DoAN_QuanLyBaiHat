@@ -66,7 +66,7 @@
             this.linkLabel1.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.linkLabel1.Location = new System.Drawing.Point(159, 304);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(86, 25);
+            this.linkLabel1.Size = new System.Drawing.Size(73, 21);
             this.linkLabel1.TabIndex = 8;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Đăng ký";
@@ -78,7 +78,7 @@
             this.label4.ForeColor = System.Drawing.Color.Blue;
             this.label4.Location = new System.Drawing.Point(21, 304);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(210, 25);
+            this.label4.Size = new System.Drawing.Size(177, 21);
             this.label4.TabIndex = 7;
             this.label4.Text = "Nếu chưa có tài khoản";
             // 
@@ -101,7 +101,7 @@
             this.label3.Location = new System.Drawing.Point(34, 154);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 22);
+            this.label3.Size = new System.Drawing.Size(69, 18);
             this.label3.TabIndex = 3;
             this.label3.Text = "Mật khẩu";
             // 
@@ -112,7 +112,7 @@
             this.txtPassword.Location = new System.Drawing.Point(38, 180);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(315, 32);
+            this.txtPassword.Size = new System.Drawing.Size(315, 28);
             this.txtPassword.TabIndex = 2;
             // 
             // txtName
@@ -122,7 +122,7 @@
             this.txtName.Location = new System.Drawing.Point(38, 98);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(315, 32);
+            this.txtName.Size = new System.Drawing.Size(315, 28);
             this.txtName.TabIndex = 2;
             // 
             // label2
@@ -132,7 +132,7 @@
             this.label2.Location = new System.Drawing.Point(34, 72);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 22);
+            this.label2.Size = new System.Drawing.Size(105, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên đăng nhập";
             // 
@@ -143,14 +143,14 @@
             this.label1.Location = new System.Drawing.Point(118, 6);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 54);
+            this.label1.Size = new System.Drawing.Size(194, 46);
             this.label1.TabIndex = 0;
             this.label1.Text = "Đăng nhập";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(-9, -7);
+            this.pictureBox1.Location = new System.Drawing.Point(161, 135);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(306, 264);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -159,7 +159,7 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.BackgroundImage = global::DoAN_QuanLyBaiHat.Properties.Resources.unnamed__1_;

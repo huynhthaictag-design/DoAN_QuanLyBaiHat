@@ -35,7 +35,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.richLoiNhac = new System.Windows.Forms.RichTextBox();
             this.dtpNgayDang = new System.Windows.Forms.DateTimePicker();
-            this.txtTheLoai = new System.Windows.Forms.TextBox();
             this.txtDuongDan = new System.Windows.Forms.TextBox();
             this.txtTenBaiHat = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
+            this.cbbTheLoai = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabBaiHat.SuspendLayout();
             this.pnlNhapLieu.SuspendLayout();
@@ -86,11 +86,11 @@
             // 
             // pnlNhapLieu
             // 
+            this.pnlNhapLieu.Controls.Add(this.cbbTheLoai);
             this.pnlNhapLieu.Controls.Add(this.btnChonNhac);
             this.pnlNhapLieu.Controls.Add(this.label5);
             this.pnlNhapLieu.Controls.Add(this.richLoiNhac);
             this.pnlNhapLieu.Controls.Add(this.dtpNgayDang);
-            this.pnlNhapLieu.Controls.Add(this.txtTheLoai);
             this.pnlNhapLieu.Controls.Add(this.txtDuongDan);
             this.pnlNhapLieu.Controls.Add(this.txtTenBaiHat);
             this.pnlNhapLieu.Controls.Add(this.label4);
@@ -140,13 +140,6 @@
             this.dtpNgayDang.Name = "dtpNgayDang";
             this.dtpNgayDang.Size = new System.Drawing.Size(200, 22);
             this.dtpNgayDang.TabIndex = 3;
-            // 
-            // txtTheLoai
-            // 
-            this.txtTheLoai.Location = new System.Drawing.Point(234, 102);
-            this.txtTheLoai.Name = "txtTheLoai";
-            this.txtTheLoai.Size = new System.Drawing.Size(100, 22);
-            this.txtTheLoai.TabIndex = 2;
             // 
             // txtDuongDan
             // 
@@ -306,6 +299,19 @@
             this.mySqlDataAdapter1.SelectCommand = null;
             this.mySqlDataAdapter1.UpdateCommand = null;
             // 
+            // cbbTheLoai
+            // 
+            this.cbbTheLoai.FormattingEnabled = true;
+            this.cbbTheLoai.Items.AddRange(new object[] {
+            "Buồn ",
+            "Vui",
+            "Hạnh Phúc"});
+            this.cbbTheLoai.Location = new System.Drawing.Point(234, 102);
+            this.cbbTheLoai.Name = "cbbTheLoai";
+            this.cbbTheLoai.Size = new System.Drawing.Size(121, 24);
+            this.cbbTheLoai.TabIndex = 7;
+            this.cbbTheLoai.SelectedIndexChanged += new System.EventHandler(this.txtTheLoai_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -338,7 +344,6 @@
         private System.Windows.Forms.Panel pnlNhapLieu;
         private System.Windows.Forms.RichTextBox richLoiNhac;
         private System.Windows.Forms.DateTimePicker dtpNgayDang;
-        private System.Windows.Forms.TextBox txtTheLoai;
         private System.Windows.Forms.TextBox txtTenBaiHat;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -352,6 +357,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDuongDan;
         private System.Windows.Forms.Button btnChonNhac;
+        private System.Windows.Forms.ComboBox cbbTheLoai;
     }
 }
 

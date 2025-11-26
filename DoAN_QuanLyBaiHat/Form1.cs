@@ -30,7 +30,6 @@ namespace DoAN_QuanLyBaiHat
             if (hien)
             {
                txtTenBaiHat.Clear();
-                txtTheLoai.Clear();
                 richLoiNhac.Clear();
                 dtpNgayDang.Value = DateTime.Now;
                 txtDuongDan.Clear();
@@ -84,7 +83,7 @@ namespace DoAN_QuanLyBaiHat
             // Đổ dữ liệu cũ lên ô nhập trước khi hiện
             DataGridViewRow row = dgvBaiHat.CurrentRow;
             txtTenBaiHat.Text = row.Cells["Ten_Bai_Hat"].Value.ToString();
-            txtTheLoai.Text = row.Cells["The_Loai"].Value.ToString();
+            cbbTheLoai.Text = row.Cells["The_Loai"].Value.ToString();
             richLoiNhac.Text = row.Cells["Lyrics"].Value.ToString();
             // ... (các trường khác)
 
@@ -155,7 +154,7 @@ namespace DoAN_QuanLyBaiHat
 
                     // Gán tham số
                     cmd.Parameters.AddWithValue("@Ten", txtTenBaiHat.Text);
-                    cmd.Parameters.AddWithValue("@TheLoai", txtTheLoai.Text);
+                    cmd.Parameters.AddWithValue("@TheLoai", cbbTheLoai.Text);
                     cmd.Parameters.AddWithValue("@Ngay", dtpNgayDang.Value);
                     cmd.Parameters.AddWithValue("@Loi", richLoiNhac.Text);
 
@@ -189,7 +188,7 @@ namespace DoAN_QuanLyBaiHat
         void GanDuLieu(DataRow row)
         {
             row["Ten_Bai_Hat"] = txtTenBaiHat.Text;
-            row["The_Loai"] = txtTheLoai.Text;
+            row["The_Loai"] = cbbTheLoai.Text;
             row["Ngay_Dang"] = dtpNgayDang.Value;
             row["Lyrics"] = richLoiNhac.Text;
             row["DuongDan"] = txtDuongDan.Text;
@@ -272,7 +271,7 @@ namespace DoAN_QuanLyBaiHat
 
                 // Đổ dữ liệu text lên ô nhập
                 txtTenBaiHat.Text = row.Cells["Ten_Bai_Hat"].Value.ToString();
-                txtTheLoai.Text = row.Cells["The_Loai"].Value.ToString();
+                cbbTheLoai.Text = row.Cells["The_Loai"].Value.ToString();
                 richLoiNhac.Text = row.Cells["Lyrics"].Value.ToString();
 
                 if (row.Cells["Ngay_Dang"].Value != DBNull.Value)
@@ -296,5 +295,12 @@ namespace DoAN_QuanLyBaiHat
             
         }
     }
+
+   
+
+        private void txtTheLoai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
