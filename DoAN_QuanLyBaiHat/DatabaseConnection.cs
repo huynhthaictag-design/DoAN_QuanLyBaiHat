@@ -14,7 +14,7 @@ namespace DoAN_QuanLyBaiHat
         private static string strConn = "Server=localhost;" +
             "Database=qlbaihat;" +
             "User=root;" +
-            "Password=1234;" +
+            "Password=vertrigo;" +
             "Charset=utf8;";
         // Thêm Charset=utf8 vào cuối
      

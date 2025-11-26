@@ -95,6 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminController\UC_ThemAlbums.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminController\UC_ThemAlbums.Designer.cs">
+      <DependentUpon>UC_ThemAlbums.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -142,12 +148,15 @@
     <Compile Include="UserConTroller\UC_CaSi.Designer.cs">
       <DependentUpon>UC_CaSi.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserConTroller\UC_ThemBaiHat.cs">
+    <Compile Include="AdminController\UC_ThemBaiHat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserConTroller\UC_ThemBaiHat.Designer.cs">
+    <Compile Include="AdminController\UC_ThemBaiHat.Designer.cs">
       <DependentUpon>UC_ThemBaiHat.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminController\UC_ThemAlbums.resx">
+      <DependentUpon>UC_ThemAlbums.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,7 +191,7 @@
     <EmbeddedResource Include="UserConTroller\UC_CaSi.resx">
       <DependentUpon>UC_CaSi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserConTroller\UC_ThemBaiHat.resx">
+    <EmbeddedResource Include="AdminController\UC_ThemBaiHat.resx">
       <DependentUpon>UC_ThemBaiHat.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\DoAN_QuanLyBaiHat.exe.config" />
@@ -250,8 +259,6 @@
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <None Include="Resources\Gemini_Generated_Image_3wpmbg3wpmbg3wpm.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AdminController\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
