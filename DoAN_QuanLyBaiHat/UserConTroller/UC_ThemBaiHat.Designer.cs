@@ -1,4 +1,4 @@
-﻿namespace DoAN_QuanLyBaiHat.UserConTroller
+﻿namespace DoAN_QuanLyBaiHat.UserControls
 {
     partial class UC_ThemBaiHat
     {
@@ -60,11 +60,10 @@
             this.pnlNhapLieu.Controls.Add(this.label1);
             this.pnlNhapLieu.Controls.Add(this.btnHuy);
             this.pnlNhapLieu.Controls.Add(this.btnLuu);
-            this.pnlNhapLieu.Location = new System.Drawing.Point(8, 8);
+            this.pnlNhapLieu.Location = new System.Drawing.Point(0, 3);
             this.pnlNhapLieu.Name = "pnlNhapLieu";
             this.pnlNhapLieu.Size = new System.Drawing.Size(983, 677);
             this.pnlNhapLieu.TabIndex = 3;
-            this.pnlNhapLieu.Visible = false;
             // 
             // cbbTheLoai
             // 
@@ -86,6 +85,7 @@
             this.btnChonNhac.TabIndex = 19;
             this.btnChonNhac.Text = "Chọn";
             this.btnChonNhac.UseVisualStyleBackColor = true;
+            this.btnChonNhac.Click += new System.EventHandler(this.btnChonNhac_Click);
             // 
             // label5
             // 
@@ -170,6 +170,7 @@
             this.btnHuy.TabIndex = 8;
             this.btnHuy.Text = "Quay Lại";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnLuu
             // 
@@ -179,6 +180,7 @@
             this.btnLuu.TabIndex = 9;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // UC_ThemBaiHat
             // 
@@ -186,9 +188,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlNhapLieu);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "UC_ThemBaiHat";
             this.Size = new System.Drawing.Size(983, 677);
+            this.Load += new System.EventHandler(this.UC_ThemBaiHat_Load);
             this.pnlNhapLieu.ResumeLayout(false);
             this.pnlNhapLieu.PerformLayout();
             this.ResumeLayout(false);
