@@ -30,19 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBaiHat = new System.Windows.Forms.TabPage();
-            this.pnlNhapLieu = new System.Windows.Forms.Panel();
-            this.btnChonNhac = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.richLoiNhac = new System.Windows.Forms.RichTextBox();
-            this.dtpNgayDang = new System.Windows.Forms.DateTimePicker();
-            this.txtDuongDan = new System.Windows.Forms.TextBox();
-            this.txtTenBaiHat = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
             this.pnlDanhSach = new System.Windows.Forms.Panel();
             this.btnSua = new System.Windows.Forms.Button();
             this.dgvBaiHat = new System.Windows.Forms.DataGridView();
@@ -52,10 +39,8 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
-            this.cbbTheLoai = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabBaiHat.SuspendLayout();
-            this.pnlNhapLieu.SuspendLayout();
             this.pnlDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaiHat)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +51,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -74,146 +60,19 @@
             // 
             // tabBaiHat
             // 
-            this.tabBaiHat.Controls.Add(this.pnlNhapLieu);
             this.tabBaiHat.Controls.Add(this.pnlDanhSach);
-            this.tabBaiHat.Location = new System.Drawing.Point(4, 25);
+            this.tabBaiHat.Location = new System.Drawing.Point(4, 31);
             this.tabBaiHat.Name = "tabBaiHat";
             this.tabBaiHat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBaiHat.Size = new System.Drawing.Size(979, 680);
+            this.tabBaiHat.Size = new System.Drawing.Size(979, 674);
             this.tabBaiHat.TabIndex = 0;
             this.tabBaiHat.Text = "Quản Lý Bài Hát";
             this.tabBaiHat.UseVisualStyleBackColor = true;
             // 
-            // pnlNhapLieu
-            // 
-            this.pnlNhapLieu.Controls.Add(this.cbbTheLoai);
-            this.pnlNhapLieu.Controls.Add(this.btnChonNhac);
-            this.pnlNhapLieu.Controls.Add(this.label5);
-            this.pnlNhapLieu.Controls.Add(this.richLoiNhac);
-            this.pnlNhapLieu.Controls.Add(this.dtpNgayDang);
-            this.pnlNhapLieu.Controls.Add(this.txtDuongDan);
-            this.pnlNhapLieu.Controls.Add(this.txtTenBaiHat);
-            this.pnlNhapLieu.Controls.Add(this.label4);
-            this.pnlNhapLieu.Controls.Add(this.label3);
-            this.pnlNhapLieu.Controls.Add(this.label2);
-            this.pnlNhapLieu.Controls.Add(this.label1);
-            this.pnlNhapLieu.Controls.Add(this.btnHuy);
-            this.pnlNhapLieu.Controls.Add(this.btnLuu);
-            this.pnlNhapLieu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlNhapLieu.Location = new System.Drawing.Point(3, 3);
-            this.pnlNhapLieu.Name = "pnlNhapLieu";
-            this.pnlNhapLieu.Size = new System.Drawing.Size(973, 674);
-            this.pnlNhapLieu.TabIndex = 2;
-            this.pnlNhapLieu.Visible = false;
-            this.pnlNhapLieu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlNhapLieu_Paint);
-            // 
-            // btnChonNhac
-            // 
-            this.btnChonNhac.Location = new System.Drawing.Point(712, 76);
-            this.btnChonNhac.Name = "btnChonNhac";
-            this.btnChonNhac.Size = new System.Drawing.Size(75, 23);
-            this.btnChonNhac.TabIndex = 6;
-            this.btnChonNhac.Text = "Chọn";
-            this.btnChonNhac.UseVisualStyleBackColor = true;
-            this.btnChonNhac.Click += new System.EventHandler(this.btnChonNhac_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(516, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 16);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "File Nhạc";
-            // 
-            // richLoiNhac
-            // 
-            this.richLoiNhac.Location = new System.Drawing.Point(216, 202);
-            this.richLoiNhac.Name = "richLoiNhac";
-            this.richLoiNhac.Size = new System.Drawing.Size(370, 96);
-            this.richLoiNhac.TabIndex = 4;
-            this.richLoiNhac.Text = "";
-            // 
-            // dtpNgayDang
-            // 
-            this.dtpNgayDang.Location = new System.Drawing.Point(234, 146);
-            this.dtpNgayDang.Name = "dtpNgayDang";
-            this.dtpNgayDang.Size = new System.Drawing.Size(200, 22);
-            this.dtpNgayDang.TabIndex = 3;
-            // 
-            // txtDuongDan
-            // 
-            this.txtDuongDan.Location = new System.Drawing.Point(597, 73);
-            this.txtDuongDan.Name = "txtDuongDan";
-            this.txtDuongDan.ReadOnly = true;
-            this.txtDuongDan.Size = new System.Drawing.Size(100, 22);
-            this.txtDuongDan.TabIndex = 2;
-            // 
-            // txtTenBaiHat
-            // 
-            this.txtTenBaiHat.Location = new System.Drawing.Point(234, 68);
-            this.txtTenBaiHat.Name = "txtTenBaiHat";
-            this.txtTenBaiHat.Size = new System.Drawing.Size(100, 22);
-            this.txtTenBaiHat.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(150, 217);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 16);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Lời Nhạc";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(150, 146);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 16);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Ngày Đăng";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(150, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Thể Loại";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(150, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Tên Bài Hát";
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Location = new System.Drawing.Point(478, 456);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(125, 52);
-            this.btnHuy.TabIndex = 0;
-            this.btnHuy.Text = "Quay Lại";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.Location = new System.Drawing.Point(153, 456);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(125, 52);
-            this.btnLuu.TabIndex = 0;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
             // pnlDanhSach
             // 
+            this.pnlDanhSach.BackgroundImage = global::DoAN_QuanLyBaiHat.Properties.Resources.Gemini_Generated_Image_3wpmbg3wpmbg3wpm;
+            this.pnlDanhSach.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlDanhSach.Controls.Add(this.btnSua);
             this.pnlDanhSach.Controls.Add(this.dgvBaiHat);
             this.pnlDanhSach.Controls.Add(this.btnXoa);
@@ -221,16 +80,17 @@
             this.pnlDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDanhSach.Location = new System.Drawing.Point(3, 3);
             this.pnlDanhSach.Name = "pnlDanhSach";
-            this.pnlDanhSach.Size = new System.Drawing.Size(973, 674);
+            this.pnlDanhSach.Size = new System.Drawing.Size(973, 668);
             this.pnlDanhSach.TabIndex = 0;
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(820, 168);
+            this.btnSua.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSua.Location = new System.Drawing.Point(770, 183);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(75, 23);
+            this.btnSua.Size = new System.Drawing.Size(176, 58);
             this.btnSua.TabIndex = 0;
-            this.btnSua.Text = "Sửa";
+            this.btnSua.Text = "Sửa Bài Hát";
             this.btnSua.UseVisualStyleBackColor = true;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
@@ -238,31 +98,33 @@
             // 
             this.dgvBaiHat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBaiHat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBaiHat.Location = new System.Drawing.Point(3, 3);
+            this.dgvBaiHat.Location = new System.Drawing.Point(-7, 0);
             this.dgvBaiHat.Name = "dgvBaiHat";
             this.dgvBaiHat.RowHeadersWidth = 51;
             this.dgvBaiHat.RowTemplate.Height = 24;
-            this.dgvBaiHat.Size = new System.Drawing.Size(759, 671);
+            this.dgvBaiHat.Size = new System.Drawing.Size(744, 674);
             this.dgvBaiHat.TabIndex = 1;
             this.dgvBaiHat.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBaiHat_CellContentClick);
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(820, 105);
+            this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.Location = new System.Drawing.Point(770, 119);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(75, 23);
+            this.btnXoa.Size = new System.Drawing.Size(176, 58);
             this.btnXoa.TabIndex = 0;
-            this.btnXoa.Text = "xóa";
+            this.btnXoa.Text = "Xóa Bài Hát";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThem
             // 
-            this.btnThem.Location = new System.Drawing.Point(820, 50);
+            this.btnThem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThem.Location = new System.Drawing.Point(770, 55);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(75, 23);
+            this.btnThem.Size = new System.Drawing.Size(176, 58);
             this.btnThem.TabIndex = 0;
-            this.btnThem.Text = "thêm";
+            this.btnThem.Text = "Thêm Bài Hát";
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
@@ -299,19 +161,6 @@
             this.mySqlDataAdapter1.SelectCommand = null;
             this.mySqlDataAdapter1.UpdateCommand = null;
             // 
-            // cbbTheLoai
-            // 
-            this.cbbTheLoai.FormattingEnabled = true;
-            this.cbbTheLoai.Items.AddRange(new object[] {
-            "Buồn ",
-            "Vui",
-            "Hạnh Phúc"});
-            this.cbbTheLoai.Location = new System.Drawing.Point(234, 102);
-            this.cbbTheLoai.Name = "cbbTheLoai";
-            this.cbbTheLoai.Size = new System.Drawing.Size(121, 24);
-            this.cbbTheLoai.TabIndex = 7;
-            this.cbbTheLoai.SelectedIndexChanged += new System.EventHandler(this.txtTheLoai_SelectedIndexChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -324,8 +173,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabBaiHat.ResumeLayout(false);
-            this.pnlNhapLieu.ResumeLayout(false);
-            this.pnlNhapLieu.PerformLayout();
             this.pnlDanhSach.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaiHat)).EndInit();
             this.ResumeLayout(false);
@@ -341,23 +188,9 @@
         private System.Windows.Forms.Panel pnlDanhSach;
         private System.Windows.Forms.DataGridView dgvBaiHat;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
-        private System.Windows.Forms.Panel pnlNhapLieu;
-        private System.Windows.Forms.RichTextBox richLoiNhac;
-        private System.Windows.Forms.DateTimePicker dtpNgayDang;
-        private System.Windows.Forms.TextBox txtTenBaiHat;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnHuy;
-        private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDuongDan;
-        private System.Windows.Forms.Button btnChonNhac;
-        private System.Windows.Forms.ComboBox cbbTheLoai;
     }
 }
 
