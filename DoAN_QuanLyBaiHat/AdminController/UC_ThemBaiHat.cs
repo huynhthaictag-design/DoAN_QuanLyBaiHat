@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient; // Thư viện MySQL
-using System.IO; // Thư viện thao tác File
+using MySql.Data.MySqlClient;
+using System.IO;
+using DoAN_QuanLyBaiHat.AdminController; // Để dùng DatabaseConnection
 
 namespace DoAN_QuanLyBaiHat.UserControls
 {
     public partial class UC_ThemBaiHat : UserControl
     {
-        // 1. KHAI BÁO SỰ KIỆN (Để giao tiếp với Form Cha)
         public event EventHandler OnHuy;
         public event EventHandler OnLuuThanhCong;
 
-        // Biến lưu trạng thái
-        private int _flagMode = 0; // 1: Thêm, 2: Sửa
+        private int _flagMode = 0;
         private string _idBaiHat = "";
 
         public UC_ThemBaiHat()
@@ -21,23 +20,32 @@ namespace DoAN_QuanLyBaiHat.UserControls
             InitializeComponent();
         }
 
-        // 2. HÀM NHẬN DỮ LIỆU TỪ BÊN NGOÀI (Public Method)
-        public void SetData(int mode, string id, string ten, string theloai, DateTime ngay, string loi, string duongdan)
+        // --- 1. SỬA HÀM NÀY ĐỂ NHẬN ĐỦ 9 THAM SỐ (KHẮC PHỤC LỖI CS1501) ---
+        public void SetData(int mode, string id, string ten, string theloai, DateTime ngay, string loi, string duongdan, string album, string casi)
         {
             _flagMode = mode;
             _idBaiHat = id;
 
-            if (mode == 2) // Chế độ Sửa -> Điền dữ liệu cũ
+            if (mode == 2) // Chế độ Sửa
             {
+                label8.Text = "CHỈNH SỬA BÀI HÁT";
                 txtTenBaiHat.Text = ten;
-                cbbTheLoai.Text = theloai; // Dùng ComboBox
+                cbbTheLoai.Text = theloai;
                 dtpNgayDang.Value = ngay;
                 richLoiNhac.Text = loi;
                 txtDuongDan.Text = duongdan;
+
+                // Điền thêm 2 cái mới
+                txtAlbums.Text = album;
+                txtCaSi.Text = casi;
+
+                btnLuu.Text = "Cập Nhật";
             }
-            else // Chế độ Thêm -> Xóa trắng
+            else // Chế độ Thêm
             {
+                label8.Text = "THÊM BÀI HÁT";
                 XoaTrang();
+                btnLuu.Text = "Thêm Mới";
             }
         }
 
@@ -46,62 +54,64 @@ namespace DoAN_QuanLyBaiHat.UserControls
             txtTenBaiHat.Clear();
             richLoiNhac.Clear();
             txtDuongDan.Clear();
-            cbbTheLoai.SelectedIndex = -1; // Reset ComboBox
+            // Xóa trắng 2 ô mới
+            txtAlbums.Clear();
+            txtCaSi.Clear();
+            cbbTheLoai.SelectedIndex = -1;
             dtpNgayDang.Value = DateTime.Now;
         }
 
-        // 3. NÚT CHỌN NHẠC (Chỉ lấy MP3)
         private void btnChonNhac_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "MP3 Music (*.mp3)|*.mp3"; // Chỉ lọc file mp3
-            openFileDialog.Title = "Chọn file nhạc";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog open = new OpenFileDialog();
+            // Thêm các định dạng nhạc khác cho đầy đủ
+            open.Filter = "Music Files|*.mp3;*.wav;*.wma|All Files|*.*";
+            if (open.ShowDialog() == DialogResult.OK)
             {
-                txtDuongDan.Text = openFileDialog.FileName;
+                txtDuongDan.Text = open.FileName;
             }
         }
 
-        // 4. NÚT LƯU (Xử lý Copy nhạc + Lưu Database)
+        // --- NÚT LƯU ĐÃ ĐƯỢC NÂNG CẤP ---
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // A. Kiểm tra dữ liệu đầu vào
+            // 1. Kiểm tra dữ liệu đầu vào
             if (txtTenBaiHat.Text.Trim() == "")
             {
-                MessageBox.Show("Vui lòng nhập tên bài hát!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập tên bài hát!");
+                txtTenBaiHat.Focus();
                 return;
             }
 
-            // B. Xử lý Copy nhạc vào thư mục dự án
-            string tenFileLuuDB = ""; // Tên file sẽ lưu vào SQL
+            // 2. XỬ LÝ FILE NHẠC (COPY VÀ TẠO ĐƯỜNG DẪN)
+            string duongDanLuuDB = txtDuongDan.Text; // Mặc định lấy giá trị hiện tại trong ô textbox
 
             try
             {
-                // Nếu đường dẫn chứa dấu '\' nghĩa là người dùng vừa chọn file mới từ ổ đĩa
-                if (txtDuongDan.Text.Contains("\\"))
+                // Kiểm tra: Nếu đường dẫn trong TextBox là file từ ổ cứng (C:\...) thì mới thực hiện Copy.
+                // Nếu là đường dẫn cũ (MusicData\...) thì bỏ qua bước này.
+                if (File.Exists(txtDuongDan.Text) && Path.IsPathRooted(txtDuongDan.Text))
                 {
-                    // Tạo thư mục MusicData nếu chưa có
-                    string folderPath = Path.Combine(Application.StartupPath, "MusicData");
-                    if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+                    // a. Tạo thư mục chứa nhạc nếu chưa có
+                    string folderDich = Path.Combine(Application.StartupPath, "MusicData");
+                    if (!Directory.Exists(folderDich))
+                    {
+                        Directory.CreateDirectory(folderDich);
+                    }
 
-                    // Lấy tên file gốc
-                    string sourceFile = txtDuongDan.Text;
-                    string fileName = Path.GetFileName(sourceFile);
+                    // b. Tạo tên file duy nhất (Tránh trùng lặp)
+                    // Ví dụ: 20231127_105012_EmCuaNgayHomQua.mp3
+                    string tenFileGoc = Path.GetFileName(txtDuongDan.Text);
+                    string tenFileMoi = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + tenFileGoc;
 
-                    // Tạo đường dẫn đích
-                    string destFile = Path.Combine(folderPath, fileName);
+                    // c. Đường dẫn đích để copy file vào
+                    string duongDanDich = Path.Combine(folderDich, tenFileMoi);
 
-                    // Copy file (ghi đè nếu trùng)
-                    File.Copy(sourceFile, destFile, true);
+                    // d. Thực hiện Copy
+                    File.Copy(txtDuongDan.Text, duongDanDich, true);
 
-                    // Chỉ lấy tên file để lưu
-                    tenFileLuuDB = fileName;
-                }
-                else
-                {
-                    // Nếu không chọn mới, giữ nguyên tên cũ (khi đang Sửa)
-                    tenFileLuuDB = txtDuongDan.Text;
+                    // e. Cập nhật chuỗi để lưu vào Database (Lưu đường dẫn tương đối)
+                    duongDanLuuDB = "MusicData\\" + tenFileMoi;
                 }
             }
             catch (Exception ex)
@@ -110,7 +120,7 @@ namespace DoAN_QuanLyBaiHat.UserControls
                 return; // Dừng lại nếu copy lỗi
             }
 
-            // C. Lưu vào Database
+            // 3. XỬ LÝ DATABASE
             try
             {
                 using (MySqlConnection conn = DatabaseConnection.GetConnection())
@@ -118,50 +128,53 @@ namespace DoAN_QuanLyBaiHat.UserControls
                     conn.Open();
                     string sql = "";
 
-                    if (_flagMode == 1) // Thêm mới
+                    if (_flagMode == 1) // THÊM MỚI
                     {
-                        sql = "INSERT INTO BaiHat (Ten_Bai_Hat, The_Loai, Ngay_Dang, Lyrics, DuongDan) VALUES (@Ten, @TheLoai, @Ngay, @Loi, @Link)";
+                        sql = "INSERT INTO BaiHat (Ten_Bai_Hat, The_Loai, Ngay_Dang, Lyrics, DuongDan, Album, CaSi) " +
+                              "VALUES (@Ten, @TheLoai, @Ngay, @Loi, @Link, @Album, @CaSi)";
                     }
-                    else // Sửa
+                    else // SỬA (UPDATE)
                     {
-                        sql = "UPDATE BaiHat SET Ten_Bai_Hat=@Ten, The_Loai=@TheLoai, Ngay_Dang=@Ngay, Lyrics=@Loi, DuongDan=@Link WHERE Bai_Hat_Id=@Id";
+                        sql = "UPDATE BaiHat SET Ten_Bai_Hat=@Ten, The_Loai=@TheLoai, Ngay_Dang=@Ngay, " +
+                              "Lyrics=@Loi, DuongDan=@Link, Album=@Album, CaSi=@CaSi WHERE Bai_Hat_Id=@Id";
                     }
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    // Gán tham số (An toàn, chống SQL Injection)
+                    // Gán các tham số
                     cmd.Parameters.AddWithValue("@Ten", txtTenBaiHat.Text.Trim());
-                    cmd.Parameters.AddWithValue("@TheLoai", cbbTheLoai.Text); // Lấy từ ComboBox
+                    cmd.Parameters.AddWithValue("@TheLoai", cbbTheLoai.Text);
                     cmd.Parameters.AddWithValue("@Ngay", dtpNgayDang.Value);
                     cmd.Parameters.AddWithValue("@Loi", richLoiNhac.Text);
-                    cmd.Parameters.AddWithValue("@Link", tenFileLuuDB); // Lưu tên file ngắn gọn
 
-                    if (_flagMode == 2)
+                    // Quan trọng: Lưu đường dẫn đã xử lý ở trên
+                    cmd.Parameters.AddWithValue("@Link", duongDanLuuDB);
+
+                    cmd.Parameters.AddWithValue("@Album", txtAlbums.Text);
+                    cmd.Parameters.AddWithValue("@CaSi", txtCaSi.Text);
+
+                    if (_flagMode == 2) // Nếu là sửa thì cần ID
                     {
                         cmd.Parameters.AddWithValue("@Id", _idBaiHat);
                     }
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Thao tác thành công!", "Thông báo");
 
-                    // D. Báo cho Form cha biết để tắt UC đi
+                    MessageBox.Show("Thao tác thành công!");
+
+                    // Gọi sự kiện để Form cha biết mà load lại dữ liệu
                     OnLuuThanhCong?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi Database: " + ex.Message);
+                MessageBox.Show("Lỗi Database: " + ex.Message + "\n(Kiểm tra lại xem đã chạy lệnh SQL thêm cột Album/CaSi chưa?)");
             }
         }
 
-        // 5. NÚT QUAY LẠI
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            // Báo cho Form cha biết để tắt UC đi
             OnHuy?.Invoke(this, EventArgs.Empty);
         }
-
-        // Sự kiện Load (để trống nếu không dùng)
-        private void UC_ThemBaiHat_Load(object sender, EventArgs e) { }
     }
 }

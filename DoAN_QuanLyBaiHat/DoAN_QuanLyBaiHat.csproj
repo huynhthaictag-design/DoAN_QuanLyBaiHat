@@ -266,6 +266,7 @@
     <Content Include="obj\Debug\DoAN_QuanLyBaiHat.exe" />
     <Content Include="obj\Debug\DoAN_QuanLyBaiHat.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\unnamed.jpg" />
     <None Include="Resources\Gemini_Generated_Image_3wpmbg3wpmbg3wpm.png" />
   </ItemGroup>
   <ItemGroup />

@@ -16,5 +16,10 @@ namespace DoAN_QuanLyBaiHat.AdminController
         {
             InitializeComponent();
         }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

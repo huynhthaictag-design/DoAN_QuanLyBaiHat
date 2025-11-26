@@ -105,6 +105,7 @@
             this.btnHuy.TabIndex = 95;
             this.btnHuy.Text = "Quay Lại";
             this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnLuu
             // 
@@ -129,7 +130,7 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnLuu);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_ThemCaSi";
             this.Size = new System.Drawing.Size(538, 559);
             this.ResumeLayout(false);
