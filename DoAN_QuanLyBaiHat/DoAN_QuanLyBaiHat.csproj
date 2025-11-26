@@ -101,6 +101,12 @@
     <Compile Include="AdminController\UC_ThemAlbums.Designer.cs">
       <DependentUpon>UC_ThemAlbums.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminController\UC_ThemCaSi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminController\UC_ThemCaSi.Designer.cs">
+      <DependentUpon>UC_ThemCaSi.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -156,6 +162,9 @@
     </Compile>
     <EmbeddedResource Include="AdminController\UC_ThemAlbums.resx">
       <DependentUpon>UC_ThemAlbums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminController\UC_ThemCaSi.resx">
+      <DependentUpon>UC_ThemCaSi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
