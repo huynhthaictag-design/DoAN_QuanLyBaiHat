@@ -236,5 +236,10 @@ namespace DoAN_QuanLyBaiHat
             tabAlbums.Controls.Add(uc);
             uc.BringToFront();
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
