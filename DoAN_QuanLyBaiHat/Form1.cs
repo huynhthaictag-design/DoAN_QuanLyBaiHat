@@ -26,17 +26,34 @@ namespace DoAN_QuanLyBaiHat
         // --- HÀM HỖ TRỢ DÙNG CHUNG (HELPER) ---
         private void DongUserControl(UserControl uc)
         {
-            // Tìm parent của uc để remove chính xác
             if (uc.Parent != null)
             {
-                uc.Parent.Controls.Remove(uc);
+                uc.Parent.Controls.Remove(uc); // Gỡ bỏ khỏi giao diện
             }
-            uc.Dispose();
+            uc.Dispose(); // Giải phóng bộ nhớ
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        public void VeManHinhChinh()
+        {
+     
+            for (int i = tabBaiHat.Controls.Count - 1; i >= 0; i--)
+            {
+    
+                if (tabBaiHat.Controls[i] is UserControl)
+                {
+             
+                    tabBaiHat.Controls.RemoveAt(i);
+                }
+            }
+
+           
+            dgvBaiHat.Visible = true;
+            LoadBaiHat();
         }
     }
 }

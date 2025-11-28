@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel23 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
@@ -57,22 +58,26 @@
             this.txtMoTa = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbGioiTinh = new System.Windows.Forms.ComboBox();
             this.lblTieuDe = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTenCaSi = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnQuayLai = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoNu = new System.Windows.Forms.RadioButton();
+            this.rdoNam = new System.Windows.Forms.RadioButton();
             this.btnChonHinhAnh = new System.Windows.Forms.Button();
+            this.txtDuongDan = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel23
             // 
-            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel23.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel23.Location = new System.Drawing.Point(179, 503);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(75, 75);
@@ -80,7 +85,7 @@
             // 
             // panel24
             // 
-            this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel24.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel24.Location = new System.Drawing.Point(179, 178);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(75, 75);
@@ -88,7 +93,7 @@
             // 
             // panel25
             // 
-            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel25.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel25.Location = new System.Drawing.Point(179, 341);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(75, 75);
@@ -96,7 +101,7 @@
             // 
             // panel26
             // 
-            this.panel26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel26.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel26.Location = new System.Drawing.Point(179, 16);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(75, 75);
@@ -104,7 +109,7 @@
             // 
             // panel19
             // 
-            this.panel19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel19.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel19.Location = new System.Drawing.Point(904, 584);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(75, 75);
@@ -112,7 +117,7 @@
             // 
             // panel11
             // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel11.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel11.Location = new System.Drawing.Point(1066, 584);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(75, 75);
@@ -120,7 +125,7 @@
             // 
             // panel20
             // 
-            this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel20.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel20.Location = new System.Drawing.Point(904, 259);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(75, 75);
@@ -128,7 +133,7 @@
             // 
             // panel12
             // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel12.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel12.Location = new System.Drawing.Point(1066, 259);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(75, 75);
@@ -136,7 +141,7 @@
             // 
             // panel21
             // 
-            this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel21.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel21.Location = new System.Drawing.Point(904, 422);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(75, 75);
@@ -144,7 +149,7 @@
             // 
             // panel13
             // 
-            this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel13.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel13.Location = new System.Drawing.Point(1066, 422);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(75, 75);
@@ -152,7 +157,7 @@
             // 
             // panel22
             // 
-            this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel22.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel22.Location = new System.Drawing.Point(904, 97);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(75, 75);
@@ -160,7 +165,7 @@
             // 
             // panel14
             // 
-            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel14.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel14.Location = new System.Drawing.Point(1066, 97);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(75, 75);
@@ -168,7 +173,7 @@
             // 
             // panel15
             // 
-            this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel15.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel15.Location = new System.Drawing.Point(985, 503);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(75, 75);
@@ -176,7 +181,7 @@
             // 
             // panel16
             // 
-            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel16.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel16.Location = new System.Drawing.Point(985, 178);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(75, 75);
@@ -184,7 +189,7 @@
             // 
             // panel17
             // 
-            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel17.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel17.Location = new System.Drawing.Point(985, 341);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(75, 75);
@@ -192,7 +197,7 @@
             // 
             // panel18
             // 
-            this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel18.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel18.Location = new System.Drawing.Point(985, 16);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(75, 75);
@@ -200,7 +205,7 @@
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel7.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel7.Location = new System.Drawing.Point(95, 584);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(75, 75);
@@ -208,7 +213,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel5.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel5.Location = new System.Drawing.Point(95, 259);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(75, 75);
@@ -216,7 +221,7 @@
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel8.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel8.Location = new System.Drawing.Point(95, 422);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(75, 75);
@@ -224,7 +229,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel4.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel4.Location = new System.Drawing.Point(95, 97);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(75, 75);
@@ -232,7 +237,7 @@
             // 
             // panel9
             // 
-            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel9.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel9.Location = new System.Drawing.Point(14, 503);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(75, 75);
@@ -240,7 +245,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel6.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel6.Location = new System.Drawing.Point(14, 178);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(75, 75);
@@ -248,7 +253,7 @@
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel10.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel10.Location = new System.Drawing.Point(14, 341);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(75, 75);
@@ -256,7 +261,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel3.Location = new System.Drawing.Point(14, 16);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(75, 75);
@@ -264,7 +269,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Location = new System.Drawing.Point(260, 16);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(640, 643);
@@ -273,26 +278,27 @@
             // pbAnh
             // 
             this.pbAnh.BackColor = System.Drawing.Color.Snow;
-            this.pbAnh.Location = new System.Drawing.Point(216, 175);
+            this.pbAnh.Location = new System.Drawing.Point(225, 236);
             this.pbAnh.Name = "pbAnh";
-            this.pbAnh.Size = new System.Drawing.Size(143, 158);
+            this.pbAnh.Size = new System.Drawing.Size(143, 144);
             this.pbAnh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbAnh.TabIndex = 190;
             this.pbAnh.TabStop = false;
             // 
             // txtMoTa
             // 
-            this.txtMoTa.Location = new System.Drawing.Point(216, 348);
+            this.txtMoTa.Location = new System.Drawing.Point(216, 393);
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.Size = new System.Drawing.Size(298, 131);
+            this.txtMoTa.Size = new System.Drawing.Size(298, 118);
             this.txtMoTa.TabIndex = 189;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(84, 348);
+            this.label2.Location = new System.Drawing.Point(84, 393);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 26);
             this.label2.TabIndex = 188;
@@ -301,29 +307,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(84, 180);
+            this.label1.Location = new System.Drawing.Point(85, 256);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 26);
             this.label1.TabIndex = 187;
             this.label1.Text = "Hình Ảnh:";
             // 
-            // cbGioiTinh
-            // 
-            this.cbGioiTinh.FormattingEnabled = true;
-            this.cbGioiTinh.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ",
-            "Khác"});
-            this.cbGioiTinh.Location = new System.Drawing.Point(216, 130);
-            this.cbGioiTinh.Name = "cbGioiTinh";
-            this.cbGioiTinh.Size = new System.Drawing.Size(298, 30);
-            this.cbGioiTinh.TabIndex = 186;
-            // 
             // lblTieuDe
             // 
             this.lblTieuDe.AutoSize = true;
             this.lblTieuDe.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTieuDe.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTieuDe.Location = new System.Drawing.Point(194, 24);
             this.lblTieuDe.Name = "lblTieuDe";
             this.lblTieuDe.Size = new System.Drawing.Size(211, 37);
@@ -333,6 +329,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(84, 80);
             this.label7.Name = "label7";
@@ -346,33 +343,24 @@
             this.txtTenCaSi.Name = "txtTenCaSi";
             this.txtTenCaSi.Size = new System.Drawing.Size(298, 30);
             this.txtTenCaSi.TabIndex = 179;
+            this.txtTenCaSi.TextChanged += new System.EventHandler(this.txtTenCaSi_TextChanged);
             // 
-            // label6
+            // btnQuayLai
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(84, 130);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 26);
-            this.label6.TabIndex = 178;
-            this.label6.Text = "Giới Tính:";
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnQuayLai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHuy.AutoSize = true;
-            this.btnHuy.Location = new System.Drawing.Point(366, 508);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(125, 52);
-            this.btnHuy.TabIndex = 176;
-            this.btnHuy.Text = "Quay Lại";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            this.btnQuayLai.AutoSize = true;
+            this.btnQuayLai.Location = new System.Drawing.Point(389, 528);
+            this.btnQuayLai.Name = "btnQuayLai";
+            this.btnQuayLai.Size = new System.Drawing.Size(125, 52);
+            this.btnQuayLai.TabIndex = 176;
+            this.btnQuayLai.Text = "Quay Lại";
+            this.btnQuayLai.UseVisualStyleBackColor = true;
+            this.btnQuayLai.Click += new System.EventHandler(this.btnQuayLai_Click);
             // 
             // btnLuu
             // 
-            this.btnLuu.Location = new System.Drawing.Point(143, 508);
+            this.btnLuu.Location = new System.Drawing.Point(216, 528);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(125, 52);
             this.btnLuu.TabIndex = 177;
@@ -382,40 +370,86 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.txtDuongDan);
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnChonHinhAnh);
             this.panel1.Controls.Add(this.pbAnh);
             this.panel1.Controls.Add(this.txtMoTa);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.cbGioiTinh);
             this.panel1.Controls.Add(this.lblTieuDe);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtTenCaSi);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.btnHuy);
+            this.panel1.Controls.Add(this.btnQuayLai);
             this.panel1.Controls.Add(this.btnLuu);
             this.panel1.Location = new System.Drawing.Point(270, 29);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 616);
             this.panel1.TabIndex = 222;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdoNu);
+            this.groupBox1.Controls.Add(this.rdoNam);
+            this.groupBox1.Location = new System.Drawing.Point(216, 130);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 194;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "giới tính";
+            // 
+            // rdoNu
+            // 
+            this.rdoNu.AutoSize = true;
+            this.rdoNu.Location = new System.Drawing.Point(21, 61);
+            this.rdoNu.Name = "rdoNu";
+            this.rdoNu.Size = new System.Drawing.Size(56, 26);
+            this.rdoNu.TabIndex = 193;
+            this.rdoNu.TabStop = true;
+            this.rdoNu.Text = "Nữ";
+            this.rdoNu.UseVisualStyleBackColor = true;
+            // 
+            // rdoNam
+            // 
+            this.rdoNam.AutoSize = true;
+            this.rdoNam.Location = new System.Drawing.Point(21, 25);
+            this.rdoNam.Name = "rdoNam";
+            this.rdoNam.Size = new System.Drawing.Size(68, 26);
+            this.rdoNam.TabIndex = 192;
+            this.rdoNam.TabStop = true;
+            this.rdoNam.Text = "Nam";
+            this.rdoNam.UseVisualStyleBackColor = true;
+            // 
             // btnChonHinhAnh
             // 
-            this.btnChonHinhAnh.Location = new System.Drawing.Point(366, 175);
+            this.btnChonHinhAnh.Location = new System.Drawing.Point(376, 236);
             this.btnChonHinhAnh.Name = "btnChonHinhAnh";
-            this.btnChonHinhAnh.Size = new System.Drawing.Size(148, 55);
+            this.btnChonHinhAnh.Size = new System.Drawing.Size(138, 55);
             this.btnChonHinhAnh.TabIndex = 191;
             this.btnChonHinhAnh.Text = "Chọn hình ảnh";
             this.btnChonHinhAnh.UseVisualStyleBackColor = true;
             this.btnChonHinhAnh.Click += new System.EventHandler(this.btnChonHinhAnh_Click);
+            // 
+            // txtDuongDan
+            // 
+            this.txtDuongDan.Location = new System.Drawing.Point(376, 323);
+            this.txtDuongDan.Name = "txtDuongDan";
+            this.txtDuongDan.Size = new System.Drawing.Size(138, 30);
+            this.txtDuongDan.TabIndex = 195;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // UC_ThemCaSi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel23);
             this.Controls.Add(this.panel24);
@@ -449,6 +483,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -484,14 +520,17 @@
         private System.Windows.Forms.TextBox txtMoTa;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbGioiTinh;
         private System.Windows.Forms.Label lblTieuDe;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtTenCaSi;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnHuy;
+        private System.Windows.Forms.Button btnQuayLai;
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnChonHinhAnh;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdoNu;
+        private System.Windows.Forms.RadioButton rdoNam;
+        private System.Windows.Forms.TextBox txtDuongDan;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

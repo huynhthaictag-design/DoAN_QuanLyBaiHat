@@ -78,7 +78,10 @@ namespace DoAN_QuanLyBaiHat
                     }
 
                     MessageBox.Show("Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.", "Thông báo");
-                    Application.Exit();
+                    this.Hide();
+                    FormDangNhap dn = new FormDangNhap();
+                    dn.ShowDialog();
+
                 }
                 catch (Exception ex)
                 {

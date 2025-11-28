@@ -1,197 +1,194 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO; // Thư viện xử lý file
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.IO;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient; // Thư viện MySQL
-using DoAN_QuanLyBaiHat; // Namespace chứa DatabaseConnection
 
 namespace DoAN_QuanLyBaiHat.AdminController
 {
     public partial class UC_ThemCaSi : UserControl
     {
-        // --- KHAI BÁO BIẾN ---
-        public int flagMode = 1; // 1: Thêm, 2: Sửa
-        public string idCaSi = ""; // Lưu ID khi đang ở chế độ Sửa
-
-        // Sự kiện để báo cho Form cha biết (để load lại danh sách)
+        public event EventHandler OnHuy;
         public event EventHandler OnLuuThanhCong;
+
+        private int _flagMode = 0;
+        private string _idCaSi = "";
 
         public UC_ThemCaSi()
         {
             InitializeComponent();
-
         }
 
-        // --- 1. XỬ LÝ NÚT CHỌN ẢNH ---
-        private void btnChonHinhAnh_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-            open.Title = "Chọn ảnh ca sĩ";
 
-            if (open.ShowDialog() == DialogResult.OK)
+        // --- 1. HÀM NHẬN DỮ LIỆU (SỬA ĐỔI PHẦN GIỚI TÍNH) ---
+        public void SetData(int mode, string id, string ten, string gioitinh, string mota, string image)
+        {
+            _flagMode = mode;
+            _idCaSi = id;
+
+            if (mode == 2) // SỬA
             {
-                pbAnh.ImageLocation = open.FileName;
-                pbAnh.Tag = open.FileName; // Lưu đường dẫn gốc
+                txtTenCaSi.Text = ten;
+                txtMoTa.Text = mota;
+                txtDuongDan.Text = image; // Ví dụ: Images_CS\2025...jpg
+
+                // Xử lý giới tính
+                if (gioitinh == "Nam") rdoNam.Checked = true;
+                else if (gioitinh == "Nữ") rdoNu.Checked = true;
+                else { rdoNam.Checked = false; rdoNu.Checked = false; }
+
+                // Xử lý hiển thị ảnh
+                if (!string.IsNullOrEmpty(image))
+                {
+                    // Đường dẫn đầy đủ = Thư mục chạy PM + Đường dẫn trong DB
+                    string fullPath = Path.Combine(Application.StartupPath, image);
+
+                    if (File.Exists(fullPath))
+                    {
+                        pbAnh.ImageLocation = fullPath;
+                    }
+                    else
+                    {
+                        pbAnh.Image = null;
+                    }
+                }
+                else
+                {
+                    pbAnh.Image = null;
+                }
+            }
+            else // THÊM
+            {
+                XoaTrang();
             }
         }
 
-        // --- 2. XỬ LÝ NÚT LƯU (ĐÃ XÓA TAIKHOAN_ID) ---
+        private void XoaTrang()
+        {
+            txtTenCaSi.Clear();
+            txtMoTa.Clear();
+            // Mặc định chọn Nam khi thêm mới (hoặc bỏ chọn cả 2 tùy bạn)
+            rdoNam.Checked = true;
+        }
+
+        // --- 2. NÚT LƯU (SỬA ĐỔI CÁCH LẤY GIỚI TÍNH) ---
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // A. Kiểm tra dữ liệu đầu vào
-            if (string.IsNullOrWhiteSpace(txtTenCaSi.Text))
+            if (txtTenCaSi.Text.Trim() == "")
             {
-                MessageBox.Show("Vui lòng nhập tên ca sĩ!");
-                txtTenCaSi.Focus();
+                MessageBox.Show("Vui lòng nhập tên Ca sĩ!", "Thông báo");
                 return;
             }
 
-            string duongDanLuuDB = "";
+            // Logic lấy dữ liệu từ Radio Button
+            string gioitinh = "";
+            if (rdoNam.Checked) gioitinh = "Nam";
+            else if (rdoNu.Checked) gioitinh = "Nữ";
 
-            // B. XỬ LÝ FILE ẢNH
-            if (pbAnh.Tag != null)
+            // (Tùy chọn: Kiểm tra nếu chưa chọn giới tính)
+            if (gioitinh == "")
             {
-                string duongDanHienTai = pbAnh.Tag.ToString();
-
-                // TRƯỜNG HỢP 1: Ảnh MỚI (chưa có trong thư mục Images_CS)
-                if (!duongDanHienTai.Contains("Images_CS"))
-                {
-                    try
-                    {
-                        string folderAnh = Path.Combine(Application.StartupPath, "Images_CS");
-                        if (!Directory.Exists(folderAnh)) Directory.CreateDirectory(folderAnh);
-
-                        string extension = Path.GetExtension(duongDanHienTai);
-                        string tenFileMoi = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_CS" + extension;
-                        string duongDanDich = Path.Combine(folderAnh, tenFileMoi);
-
-                        File.Copy(duongDanHienTai, duongDanDich, true);
-                        duongDanLuuDB = "Images_CS\\" + tenFileMoi;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi copy ảnh: " + ex.Message);
-                        return;
-                    }
-                }
-                // TRƯỜNG HỢP 2: Ảnh CŨ (đã có sẵn)
-                else
-                {
-                    int index = duongDanHienTai.IndexOf("Images_CS");
-                    if (index >= 0) duongDanLuuDB = duongDanHienTai.Substring(index);
-                }
+                MessageBox.Show("Vui lòng chọn giới tính!");
+                return;
             }
 
-            // C. LƯU VÀO DATABASE
             try
             {
                 using (MySqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
                     string sql = "";
-                    MySqlCommand cmd = new MySqlCommand();
-                    cmd.Connection = conn;
 
-                    // Lấy giá trị giới tính
-                    string gioiTinh = cbGioiTinh.Text;
-                    if (string.IsNullOrEmpty(gioiTinh)) gioiTinh = "Nam";
-
-                    if (flagMode == 1) // --- THÊM MỚI ---
+                    // 1. Kiểm tra câu lệnh SQL (Phải có @Img)
+                    if (_flagMode == 1) // THÊM
                     {
-                        // Đã xóa TaiKhoan_Id
-                        sql = "INSERT INTO casi (TenCS, GioiTinh, Image, Mota) VALUES (@Ten, @GioiTinh, @HinhAnh, @Mota)";
-                        lblTieuDe.Text = "THÊM CA SĨ";
-                        cmd.Parameters.AddWithValue("@Ten", txtTenCaSi.Text.Trim());
-                        cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
-                        cmd.Parameters.AddWithValue("@HinhAnh", duongDanLuuDB);
-                        cmd.Parameters.AddWithValue("@Mota", txtMoTa.Text.Trim());
+                        sql = "INSERT INTO casi (TenCS, GioiTinh, Mota, Image) VALUES (@Ten, @GT, @Mota, @Img)";
                     }
-                    else // --- SỬA ---
+                    else // SỬA
                     {
-                        // Đã xóa TaiKhoan_Id
-                        sql = "UPDATE casi SET TenCS=@Ten, GioiTinh=@GioiTinh, Image=@HinhAnh, Mota=@Mota WHERE Cs_Id=@Id";
-                        lblTieuDe.Text = "SỬA CA SĨ";
-                        cmd.Parameters.AddWithValue("@Ten", txtTenCaSi.Text.Trim());
-                        cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
-                        cmd.Parameters.AddWithValue("@HinhAnh", duongDanLuuDB);
-                        cmd.Parameters.AddWithValue("@Mota", txtMoTa.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Id", idCaSi);
+                        sql = "UPDATE casi SET TenCS=@Ten, GioiTinh=@GT, Mota=@Mota, Image=@Img WHERE Cs_Id=@Id";
                     }
 
-                    cmd.CommandText = sql;
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    // 2. Nạp tham số (KIỂM TRA KỸ CÁC DÒNG NÀY)
+                    cmd.Parameters.AddWithValue("@Ten", txtTenCaSi.Text);
+                    cmd.Parameters.AddWithValue("@GT", gioitinh);
+                    cmd.Parameters.AddWithValue("@Mota", txtMoTa.Text);
+
+                    // 👇👇👇 BẠN CÓ THỂ ĐANG THIẾU DÒNG NÀY 👇👇👇
+                    cmd.Parameters.AddWithValue("@Img", txtDuongDan.Text);
+                    // 👆👆👆 HÃY CHẮC CHẮN NÓ CÓ MẶT 👆👆👆
+
+                    if (_flagMode == 2) cmd.Parameters.AddWithValue("@Id", _idCaSi);
+
                     cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("Thao tác thành công!");
+                    MessageBox.Show("Thành công!");
 
                     OnLuuThanhCong?.Invoke(this, EventArgs.Empty);
-
-                    if (flagMode == 1) RefreshForm();
-                    else btnHuy_Click(null, null);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi Database: " + ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
-        // --- 3. XỬ LÝ NÚT HỦY ---
-        private void btnHuy_Click(object sender, EventArgs e)
+        private void btnQuayLai_Click(object sender, EventArgs e)
         {
-            if (this.Parent != null) this.Parent.Controls.Remove(this);
+            OnHuy?.Invoke(this, EventArgs.Empty);
+
+            if (this.Parent != null)
+            {
+                this.Parent.Controls.Remove(this);
+            }
         }
 
-        // --- 4. HÀM NHẬN DỮ LIỆU TỪ FORM CHA ---
-        public void SetData(int mode, string id, string ten, string gioitinh, string mota, string duongDanAnhDB)
+        private void btnChonHinhAnh_Click(object sender, EventArgs e)
         {
-            this.flagMode = mode;
-            this.idCaSi = id;
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            open.Title = "Chọn ảnh chân dung";
 
-            txtTenCaSi.Text = ten;
-            txtMoTa.Text = mota;
-
-            if (!string.IsNullOrEmpty(gioitinh))
+            if (open.ShowDialog() == DialogResult.OK)
             {
-                cbGioiTinh.SelectedItem = gioitinh;
-                if (cbGioiTinh.SelectedIndex < 0) cbGioiTinh.Text = gioitinh;
-            }
-
-            if (!string.IsNullOrEmpty(duongDanAnhDB))
-            {
-                string fullPath = Path.Combine(Application.StartupPath, duongDanAnhDB);
-                if (File.Exists(fullPath))
+                try
                 {
-                    pbAnh.ImageLocation = fullPath;
-                    pbAnh.Tag = fullPath;
+                    // 1. Tạo thư mục "Images_CS" nếu chưa có
+                    string folderName = "Images_CS";
+                    string folderPath = Path.Combine(Application.StartupPath, folderName);
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // 2. Tạo tên file mới theo định dạng: yyyyMMdd_HHmmss_CS.jpg
+                    string extension = Path.GetExtension(open.FileName); // Lấy đuôi file (.jpg, .png)
+                    string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string newFileName = $"{timeStamp}_CS{extension}"; // Ví dụ: 20251128_120543_CS.jpg
+
+                    // 3. Tạo đường dẫn đích đầy đủ
+                    string destPath = Path.Combine(folderPath, newFileName);
+
+                    // 4. COPY file từ máy vào thư mục dự án ngay lập tức
+                    File.Copy(open.FileName, destPath, true);
+
+                    // 5. Hiển thị ảnh lên PictureBox
+                    pbAnh.ImageLocation = destPath;
+
+                    // 6. Gán đường dẫn tương đối vào TextBox để tí nữa lưu Database
+                    // Lưu dạng: Images_CS\20251128_120543_CS.jpg
+                    txtDuongDan.Text = Path.Combine(folderName, newFileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    pbAnh.Image = null;
-                    pbAnh.Tag = null;
+                    MessageBox.Show("Lỗi khi xử lý ảnh: " + ex.Message);
                 }
-            }
-            else
-            {
-                pbAnh.Image = null;
-                pbAnh.Tag = null;
             }
         }
 
-        // --- 5. HÀM XÓA TRẮNG FORM ---
-        private void RefreshForm()
+        private void txtTenCaSi_TextChanged(object sender, EventArgs e)
         {
-            txtTenCaSi.Text = "";
-            cbGioiTinh.SelectedIndex = 0;
-            pbAnh.Image = null;
-            pbAnh.Tag = null;
-            txtMoTa.Text = "";
             txtTenCaSi.Focus();
         }
     }

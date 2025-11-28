@@ -172,9 +172,16 @@ namespace DoAN_QuanLyBaiHat.UserControls
             }
         }
 
-        private void btnHuy_Click(object sender, EventArgs e)
+     
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
         {
-            OnHuy?.Invoke(this, EventArgs.Empty);
+
+        }
+
+        private void UC_ThemBaiHat_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
