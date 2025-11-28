@@ -7,18 +7,21 @@ namespace DoAN_QuanLyBaiHat.AdminController
 {
     public partial class UC_QuanLyTaiKhoan : UserControl
     {
+        // --- 1. HÀM KHỞI TẠO (Constructor) - Chỉ giữ 1 cái duy nhất ---
         public UC_QuanLyTaiKhoan()
         {
             InitializeComponent();
+            LoadDanhSachTaiKhoan();
         }
 
+        // --- 2. SỰ KIỆN LOAD (Có thể để trống hoặc xóa đi nếu đã gọi ở trên) ---
         private void UC_QuanLyTaiKhoan_Load(object sender, EventArgs e)
         {
-            LoadData();
+            // LoadDanhSachTaiKhoan(); // Đã gọi ở Constructor rồi
         }
 
-        // --- 1. TẢI DANH SÁCH TÀI KHOẢN ---
-        private void LoadData()
+        // --- 3. HÀM TẢI DANH SÁCH ---
+        private void LoadDanhSachTaiKhoan()
         {
             try
             {
@@ -33,9 +36,12 @@ namespace DoAN_QuanLyBaiHat.AdminController
 
                     dgvTaiKhoan.DataSource = dt;
 
-                    // Trang trí cột cho đẹp
-                    if (dgvTaiKhoan.Columns.Contains("Id")) dgvTaiKhoan.Columns["Id"].Width = 50;
-                    if (dgvTaiKhoan.Columns.Contains("NickName")) dgvTaiKhoan.Columns["NickName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    // Trang trí cột cho đẹp (Kiểm tra null để tránh lỗi)
+                    if (dgvTaiKhoan.Columns.Count > 0)
+                    {
+                        if (dgvTaiKhoan.Columns.Contains("Id")) dgvTaiKhoan.Columns["Id"].Width = 50;
+                        if (dgvTaiKhoan.Columns.Contains("NickName")) dgvTaiKhoan.Columns["NickName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
                 }
             }
             catch (Exception ex)
@@ -44,7 +50,7 @@ namespace DoAN_QuanLyBaiHat.AdminController
             }
         }
 
-        // --- 2. HÀM DÙNG CHUNG ĐỂ CẬP NHẬT ROLE (QUYỀN) ---
+        // --- 4. HÀM DÙNG CHUNG ĐỂ CẬP NHẬT ROLE (QUYỀN) ---
         private void CapNhatQuyen(string newRole)
         {
             if (dgvTaiKhoan.CurrentRow == null)
@@ -73,27 +79,27 @@ namespace DoAN_QuanLyBaiHat.AdminController
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show($"Đã cập nhật '{nickName}' thành {newRole}!");
-                    LoadData();
+                    LoadDanhSachTaiKhoan();
                 }
             }
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
-        // --- 3. NÚT NÂNG LÊN ADMIN ---
+        // --- 5. CÁC NÚT CHỨC NĂNG ---
+
+        // Nút Nâng lên Admin
         private void btnNangQuyen_Click(object sender, EventArgs e)
         {
             CapNhatQuyen("admin");
         }
 
-        // --- 4. NÚT HẠ XUỐNG USER ---
+        // Nút Hạ xuống User
         private void btnHaQuyen_Click(object sender, EventArgs e)
         {
-            // Kiểm tra: Không cho phép tự hạ quyền chính mình (nếu bạn có lưu ID đăng nhập)
-            // Tạm thời chỉ cảnh báo chung
             CapNhatQuyen("user");
         }
 
-        // --- 5. NÚT XÓA TÀI KHOẢN ---
+        // Nút Xóa Tài Khoản
         private void btnXoa_Click(object sender, EventArgs e)
         {
             if (dgvTaiKhoan.CurrentRow == null) return;
@@ -118,20 +124,27 @@ namespace DoAN_QuanLyBaiHat.AdminController
                 using (MySqlConnection conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    // Xóa tài khoản (Lưu ý: Do có khóa ngoại, các Playlist của user này cũng sẽ bị xóa theo nếu DB thiết lập ON DELETE CASCADE)
                     string sql = "DELETE FROM TaiKhoan WHERE Id = @Id";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@Id", id);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Đã xóa tài khoản!");
-                    LoadData();
+                    LoadDanhSachTaiKhoan();
                 }
             }
             catch (Exception ex) { MessageBox.Show("Lỗi xóa: " + ex.Message); }
         }
 
-       
-       
+        // Nút Reset Mật khẩu (Nếu có)
+        private void btnResetPass_Click(object sender, EventArgs e)
+        {
+            // Code reset mật khẩu nếu cần
+        }
+
+        private void dgvTaiKhoan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Để trống
+        }
     }
 }

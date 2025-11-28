@@ -51,6 +51,7 @@
             this.btnThemCaSi = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
+            this.tabQuanLyTaiKhoan = new System.Windows.Forms.TabPage();
             this.tabConTrol.SuspendLayout();
             this.tabBaiHat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaiHat)).BeginInit();
@@ -65,6 +66,7 @@
             this.tabConTrol.Controls.Add(this.tabBaiHat);
             this.tabConTrol.Controls.Add(this.tabAlbum);
             this.tabConTrol.Controls.Add(this.tabCaSi);
+            this.tabConTrol.Controls.Add(this.tabQuanLyTaiKhoan);
             this.tabConTrol.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabConTrol.Location = new System.Drawing.Point(0, 0);
             this.tabConTrol.Name = "tabConTrol";
@@ -312,6 +314,15 @@
             this.mySqlDataAdapter1.SelectCommand = null;
             this.mySqlDataAdapter1.UpdateCommand = null;
             // 
+            // tabQuanLyTaiKhoan
+            // 
+            this.tabQuanLyTaiKhoan.Location = new System.Drawing.Point(4, 31);
+            this.tabQuanLyTaiKhoan.Name = "tabQuanLyTaiKhoan";
+            this.tabQuanLyTaiKhoan.Size = new System.Drawing.Size(1153, 674);
+            this.tabQuanLyTaiKhoan.TabIndex = 2;
+            this.tabQuanLyTaiKhoan.Text = "Quản lý Tài Khoản";
+            this.tabQuanLyTaiKhoan.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -359,5 +370,6 @@
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabQuanLyTaiKhoan;
     }
 }

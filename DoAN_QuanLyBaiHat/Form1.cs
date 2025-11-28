@@ -21,6 +21,24 @@ namespace DoAN_QuanLyBaiHat
         {
             LoadBaiHat();     // Hàm này nằm ở file Form1.BaiHat.cs
             LoadDataCaSi();   // Hàm này nằm ở file Form1.CaSi.cs
+            LoadTabTaiKhoan();
+           
+        }
+        private void LoadTabTaiKhoan()
+        {
+            DoAN_QuanLyBaiHat.AdminController.UC_QuanLyTaiKhoan ucTK = new DoAN_QuanLyBaiHat.AdminController.UC_QuanLyTaiKhoan();
+
+            // Cài đặt lấp đầy
+            ucTK.Dock = DockStyle.Fill;
+
+            // Xóa cái cũ đi trước khi thêm cái mới (Tránh bị chồng)
+            tabQuanLyTaiKhoan.Controls.Clear();
+
+            // Thêm vào Tab
+            tabQuanLyTaiKhoan.Controls.Add(ucTK);
+
+            // Đưa lên trên cùng cho chắc chắn
+            ucTK.BringToFront();
         }
 
         // --- HÀM HỖ TRỢ DÙNG CHUNG (HELPER) ---
