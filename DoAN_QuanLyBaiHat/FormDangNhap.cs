@@ -49,8 +49,8 @@ namespace DoAN_QuanLyBaiHat
 
                       
 
-                        // Kiểm tra Role để mở Form tương ứng
-                        if (role == "User")
+                       
+                        if ((role == "User")|| (role == "user"))
                         {
                             User f = new User();
                             f.Show();

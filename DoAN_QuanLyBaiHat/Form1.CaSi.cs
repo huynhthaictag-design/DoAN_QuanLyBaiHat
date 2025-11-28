@@ -131,25 +131,56 @@ namespace DoAN_QuanLyBaiHat
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa ca sĩ này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            // Lấy ID và Tên để xử lý
+            string id = dgvCaSi.CurrentRow.Cells["Cs_Id"].Value.ToString();
+            string tenCS = dgvCaSi.CurrentRow.Cells["TenCS"].Value.ToString();
+
+            if (MessageBox.Show($"Bạn có chắc chắn muốn xóa ca sĩ '{tenCS}'?\n\nLƯU Ý: Tất cả Album của ca sĩ này cũng sẽ bị xóa!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 try
                 {
-                    string id = dgvCaSi.CurrentRow.Cells["Cs_Id"].Value.ToString();
                     using (MySqlConnection conn = DatabaseConnection.GetConnection())
                     {
                         conn.Open();
-                        string sql = "DELETE FROM casi WHERE Cs_Id = @Id";
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@Id", id);
-                        cmd.ExecuteNonQuery();
+                        MySqlTransaction tran = conn.BeginTransaction(); // Dùng transaction để an toàn
+
+                        try
+                        {
+                            // BƯỚC 1: Xóa (hoặc set NULL) các Album thuộc về Ca sĩ này
+                            // (Vì bảng albums có cột Cs_Id là khóa ngoại)
+                            string sqlDeleteAlbum = "DELETE FROM albums WHERE Cs_Id = @Id";
+                            MySqlCommand cmdAlbum = new MySqlCommand(sqlDeleteAlbum, conn, tran);
+                            cmdAlbum.Parameters.AddWithValue("@Id", id);
+                            cmdAlbum.ExecuteNonQuery();
+
+                            // BƯỚC 2: Cập nhật Bài hát (Nếu bài hát lưu Tên ca sĩ dạng text)
+                            // Nếu bảng BaiHat lưu Cs_Id thì dùng ID, nếu lưu TenCS thì dùng tên
+                            string sqlUpdateBaiHat = "UPDATE baihat SET CaSi = NULL WHERE CaSi = @TenCS";
+                            MySqlCommand cmdBaiHat = new MySqlCommand(sqlUpdateBaiHat, conn, tran);
+                            cmdBaiHat.Parameters.AddWithValue("@TenCS", tenCS);
+                            cmdBaiHat.ExecuteNonQuery();
+
+                            // BƯỚC 3: Xóa Ca sĩ
+                            string sqlDeleteCaSi = "DELETE FROM casi WHERE Cs_Id = @Id";
+                            MySqlCommand cmdCaSi = new MySqlCommand(sqlDeleteCaSi, conn, tran);
+                            cmdCaSi.Parameters.AddWithValue("@Id", id);
+                            cmdCaSi.ExecuteNonQuery();
+
+                            tran.Commit(); // Chốt giao dịch
+
+                            MessageBox.Show("Xóa thành công!");
+                            LoadDataCaSi(); // Tải lại danh sách
+                        }
+                        catch (Exception ex)
+                        {
+                            tran.Rollback(); // Nếu lỗi thì hoàn tác
+                            MessageBox.Show("Lỗi Database: " + ex.Message);
+                        }
                     }
-                    LoadDataCaSi();
-                    MessageBox.Show("Xóa thành công!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi xóa: " + ex.Message);
+                    MessageBox.Show("Lỗi kết nối: " + ex.Message);
                 }
             }
         }

@@ -31,10 +31,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnChonNhac = new System.Windows.Forms.Button();
             this.cbbTheLoai = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtAlbums = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtCaSi = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -53,6 +50,8 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.cbbCaSi = new System.Windows.Forms.ComboBox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label8
@@ -242,31 +241,6 @@
             this.cbbTheLoai.Size = new System.Drawing.Size(300, 30);
             this.cbbTheLoai.TabIndex = 141;
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(345, 471);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(148, 33);
-            this.label6.TabIndex = 142;
-            this.label6.Text = "Tên Albums";
-            // 
-            // txtAlbums
-            // 
-            this.txtAlbums.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAlbums.Location = new System.Drawing.Point(509, 475);
-            this.txtAlbums.Name = "txtAlbums";
-            this.txtAlbums.Size = new System.Drawing.Size(300, 30);
-            this.txtAlbums.TabIndex = 143;
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -276,25 +250,17 @@
             this.label7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(345, 521);
+            this.label7.Location = new System.Drawing.Point(165, 441);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 33);
             this.label7.TabIndex = 144;
             this.label7.Text = "Tên Ca Sĩ";
             // 
-            // txtCaSi
-            // 
-            this.txtCaSi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCaSi.Location = new System.Drawing.Point(509, 525);
-            this.txtCaSi.Name = "txtCaSi";
-            this.txtCaSi.Size = new System.Drawing.Size(300, 30);
-            this.txtCaSi.TabIndex = 145;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.cbbCaSi);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(180, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(792, 619);
@@ -436,6 +402,15 @@
             this.panel18.Size = new System.Drawing.Size(75, 75);
             this.panel18.TabIndex = 161;
             // 
+            // cbbCaSi
+            // 
+            this.cbbCaSi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbCaSi.FormattingEnabled = true;
+            this.cbbCaSi.Location = new System.Drawing.Point(329, 445);
+            this.cbbCaSi.Name = "cbbCaSi";
+            this.cbbCaSi.Size = new System.Drawing.Size(300, 30);
+            this.cbbCaSi.TabIndex = 146;
+            // 
             // UC_ThemBaiHat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -461,10 +436,6 @@
             this.Controls.Add(this.panel18);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtCaSi);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txtAlbums);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.cbbTheLoai);
             this.Controls.Add(this.btnChonNhac);
             this.Controls.Add(this.label5);
@@ -486,6 +457,8 @@
             this.Name = "UC_ThemBaiHat";
             this.Size = new System.Drawing.Size(1155, 674);
             this.Load += new System.EventHandler(this.UC_ThemBaiHat_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,10 +479,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnChonNhac;
         private System.Windows.Forms.ComboBox cbbTheLoai;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtAlbums;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtCaSi;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -528,5 +498,6 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.ComboBox cbbCaSi;
     }
 }

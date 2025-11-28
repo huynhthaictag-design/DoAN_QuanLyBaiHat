@@ -64,11 +64,11 @@
             this.btnQuayLai = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtDuongDan = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdoNu = new System.Windows.Forms.RadioButton();
             this.rdoNam = new System.Windows.Forms.RadioButton();
             this.btnChonHinhAnh = new System.Windows.Forms.Button();
-            this.txtDuongDan = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
             this.panel1.SuspendLayout();
@@ -388,6 +388,13 @@
             this.panel1.Size = new System.Drawing.Size(614, 616);
             this.panel1.TabIndex = 222;
             // 
+            // txtDuongDan
+            // 
+            this.txtDuongDan.Location = new System.Drawing.Point(376, 323);
+            this.txtDuongDan.Name = "txtDuongDan";
+            this.txtDuongDan.Size = new System.Drawing.Size(138, 30);
+            this.txtDuongDan.TabIndex = 195;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.rdoNu);
@@ -430,13 +437,6 @@
             this.btnChonHinhAnh.Text = "Chọn hình ảnh";
             this.btnChonHinhAnh.UseVisualStyleBackColor = true;
             this.btnChonHinhAnh.Click += new System.EventHandler(this.btnChonHinhAnh_Click);
-            // 
-            // txtDuongDan
-            // 
-            this.txtDuongDan.Location = new System.Drawing.Point(376, 323);
-            this.txtDuongDan.Name = "txtDuongDan";
-            this.txtDuongDan.Size = new System.Drawing.Size(138, 30);
-            this.txtDuongDan.TabIndex = 195;
             // 
             // contextMenuStrip1
             // 

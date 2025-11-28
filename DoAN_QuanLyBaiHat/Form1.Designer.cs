@@ -28,7 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabConTrol = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
+            this.tabQuanLyTaiKhoan = new System.Windows.Forms.TabPage();
+            this.tabCaSi = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSuaCaSi = new System.Windows.Forms.Button();
+            this.dgvCaSi = new System.Windows.Forms.DataGridView();
+            this.btnXoaCaSi = new System.Windows.Forms.Button();
+            this.btnThemCaSi = new System.Windows.Forms.Button();
+            this.tabAlbum = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSuaAlbums = new System.Windows.Forms.Button();
+            this.dgvAlbums = new System.Windows.Forms.DataGridView();
+            this.btnXoaAlbums = new System.Windows.Forms.Button();
+            this.btnThemAlbums = new System.Windows.Forms.Button();
             this.tabBaiHat = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
@@ -37,42 +51,179 @@
             this.dgvBaiHat = new System.Windows.Forms.DataGridView();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.tabAlbum = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnSuaAlbums = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnXoaAlbums = new System.Windows.Forms.Button();
-            this.btnThemAlbums = new System.Windows.Forms.Button();
-            this.tabCaSi = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSuaCaSi = new System.Windows.Forms.Button();
-            this.dgvCaSi = new System.Windows.Forms.DataGridView();
-            this.btnXoaCaSi = new System.Windows.Forms.Button();
-            this.btnThemCaSi = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
-            this.tabQuanLyTaiKhoan = new System.Windows.Forms.TabPage();
-            this.tabConTrol.SuspendLayout();
-            this.tabBaiHat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBaiHat)).BeginInit();
-            this.tabAlbum.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabConTrol = new System.Windows.Forms.TabControl();
             this.tabCaSi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCaSi)).BeginInit();
+            this.tabAlbum.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlbums)).BeginInit();
+            this.tabBaiHat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBaiHat)).BeginInit();
+            this.tabConTrol.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabConTrol
+            // tabPage4
             // 
-            this.tabConTrol.Controls.Add(this.tabBaiHat);
-            this.tabConTrol.Controls.Add(this.tabAlbum);
-            this.tabConTrol.Controls.Add(this.tabCaSi);
-            this.tabConTrol.Controls.Add(this.tabQuanLyTaiKhoan);
-            this.tabConTrol.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabConTrol.Location = new System.Drawing.Point(0, 0);
-            this.tabConTrol.Name = "tabConTrol";
-            this.tabConTrol.SelectedIndex = 0;
-            this.tabConTrol.Size = new System.Drawing.Size(1161, 709);
-            this.tabConTrol.TabIndex = 1;
+            this.tabPage4.Location = new System.Drawing.Point(0, 0);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(200, 100);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "tabPage4";
+            // 
+            // mySqlDataAdapter1
+            // 
+            this.mySqlDataAdapter1.DeleteCommand = null;
+            this.mySqlDataAdapter1.InsertCommand = null;
+            this.mySqlDataAdapter1.SelectCommand = null;
+            this.mySqlDataAdapter1.UpdateCommand = null;
+            // 
+            // tabQuanLyTaiKhoan
+            // 
+            this.tabQuanLyTaiKhoan.Location = new System.Drawing.Point(4, 31);
+            this.tabQuanLyTaiKhoan.Name = "tabQuanLyTaiKhoan";
+            this.tabQuanLyTaiKhoan.Size = new System.Drawing.Size(1153, 674);
+            this.tabQuanLyTaiKhoan.TabIndex = 2;
+            this.tabQuanLyTaiKhoan.Text = "Quản lý Tài Khoản";
+            this.tabQuanLyTaiKhoan.UseVisualStyleBackColor = true;
+            // 
+            // tabCaSi
+            // 
+            this.tabCaSi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tabCaSi.Controls.Add(this.label3);
+            this.tabCaSi.Controls.Add(this.btnSuaCaSi);
+            this.tabCaSi.Controls.Add(this.dgvCaSi);
+            this.tabCaSi.Controls.Add(this.btnXoaCaSi);
+            this.tabCaSi.Controls.Add(this.btnThemCaSi);
+            this.tabCaSi.Location = new System.Drawing.Point(4, 31);
+            this.tabCaSi.Name = "tabCaSi";
+            this.tabCaSi.Size = new System.Drawing.Size(1153, 674);
+            this.tabCaSi.TabIndex = 0;
+            this.tabCaSi.Text = "Quản Lý Ca Sĩ";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Algerian", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(928, 241);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(217, 428);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "PHAN \r\nHỮU \r\nTRỌNG";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSuaCaSi
+            // 
+            this.btnSuaCaSi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSuaCaSi.Location = new System.Drawing.Point(952, 180);
+            this.btnSuaCaSi.Name = "btnSuaCaSi";
+            this.btnSuaCaSi.Size = new System.Drawing.Size(176, 58);
+            this.btnSuaCaSi.TabIndex = 2;
+            this.btnSuaCaSi.Text = "Sửa Ca Sĩ";
+            this.btnSuaCaSi.UseVisualStyleBackColor = true;
+            this.btnSuaCaSi.Click += new System.EventHandler(this.btnSuaCaSi_Click);
+            // 
+            // dgvCaSi
+            // 
+            this.dgvCaSi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCaSi.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvCaSi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCaSi.Location = new System.Drawing.Point(0, 0);
+            this.dgvCaSi.Name = "dgvCaSi";
+            this.dgvCaSi.RowHeadersWidth = 51;
+            this.dgvCaSi.RowTemplate.Height = 24;
+            this.dgvCaSi.Size = new System.Drawing.Size(922, 674);
+            this.dgvCaSi.TabIndex = 5;
+            // 
+            // btnXoaCaSi
+            // 
+            this.btnXoaCaSi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaCaSi.Location = new System.Drawing.Point(952, 116);
+            this.btnXoaCaSi.Name = "btnXoaCaSi";
+            this.btnXoaCaSi.Size = new System.Drawing.Size(176, 58);
+            this.btnXoaCaSi.TabIndex = 3;
+            this.btnXoaCaSi.Text = "Xóa Ca Sĩ";
+            this.btnXoaCaSi.UseVisualStyleBackColor = true;
+            this.btnXoaCaSi.Click += new System.EventHandler(this.btnXoaCaSi_Click);
+            // 
+            // btnThemCaSi
+            // 
+            this.btnThemCaSi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemCaSi.Location = new System.Drawing.Point(952, 52);
+            this.btnThemCaSi.Name = "btnThemCaSi";
+            this.btnThemCaSi.Size = new System.Drawing.Size(176, 58);
+            this.btnThemCaSi.TabIndex = 4;
+            this.btnThemCaSi.Text = "Thêm Ca Sĩ";
+            this.btnThemCaSi.UseVisualStyleBackColor = true;
+            this.btnThemCaSi.Click += new System.EventHandler(this.btnThemCaSi_Click);
+            // 
+            // tabAlbum
+            // 
+            this.tabAlbum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.tabAlbum.Controls.Add(this.label2);
+            this.tabAlbum.Controls.Add(this.btnSuaAlbums);
+            this.tabAlbum.Controls.Add(this.dgvAlbums);
+            this.tabAlbum.Controls.Add(this.btnXoaAlbums);
+            this.tabAlbum.Controls.Add(this.btnThemAlbums);
+            this.tabAlbum.Location = new System.Drawing.Point(4, 31);
+            this.tabAlbum.Name = "tabAlbum";
+            this.tabAlbum.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAlbum.Size = new System.Drawing.Size(1153, 674);
+            this.tabAlbum.TabIndex = 1;
+            this.tabAlbum.Text = "Quản Lý Albums";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Algerian", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(928, 241);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(217, 428);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "NGUYỄN ĐẠT \r\nTÀI";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSuaAlbums
+            // 
+            this.btnSuaAlbums.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSuaAlbums.Location = new System.Drawing.Point(950, 180);
+            this.btnSuaAlbums.Name = "btnSuaAlbums";
+            this.btnSuaAlbums.Size = new System.Drawing.Size(176, 58);
+            this.btnSuaAlbums.TabIndex = 2;
+            this.btnSuaAlbums.Text = "Sửa Albums";
+            this.btnSuaAlbums.UseVisualStyleBackColor = true;
+            this.btnSuaAlbums.Click += new System.EventHandler(this.btnSuaAlbums_Click);
+            // 
+            // dgvAlbums
+            // 
+            this.dgvAlbums.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAlbums.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvAlbums.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAlbums.Location = new System.Drawing.Point(0, 0);
+            this.dgvAlbums.Name = "dgvAlbums";
+            this.dgvAlbums.RowHeadersWidth = 51;
+            this.dgvAlbums.RowTemplate.Height = 24;
+            this.dgvAlbums.Size = new System.Drawing.Size(922, 677);
+            this.dgvAlbums.TabIndex = 5;
+            this.dgvAlbums.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAlbums_CellClick);
+            // 
+            // btnXoaAlbums
+            // 
+            this.btnXoaAlbums.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaAlbums.Location = new System.Drawing.Point(950, 116);
+            this.btnXoaAlbums.Name = "btnXoaAlbums";
+            this.btnXoaAlbums.Size = new System.Drawing.Size(176, 58);
+            this.btnXoaAlbums.TabIndex = 3;
+            this.btnXoaAlbums.Text = "Xóa Albums";
+            this.btnXoaAlbums.UseVisualStyleBackColor = true;
+            this.btnXoaAlbums.Click += new System.EventHandler(this.btnXoaAlbums_Click);
+            // 
+            // btnThemAlbums
+            // 
+            this.btnThemAlbums.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemAlbums.Location = new System.Drawing.Point(950, 52);
+            this.btnThemAlbums.Name = "btnThemAlbums";
+            this.btnThemAlbums.Size = new System.Drawing.Size(176, 58);
+            this.btnThemAlbums.TabIndex = 4;
+            this.btnThemAlbums.Text = "Thêm Albums";
+            this.btnThemAlbums.UseVisualStyleBackColor = true;
+            this.btnThemAlbums.Click += new System.EventHandler(this.btnThemAlbums_Click);
             // 
             // tabBaiHat
             // 
@@ -163,165 +314,18 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // tabAlbum
+            // tabConTrol
             // 
-            this.tabAlbum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.tabAlbum.Controls.Add(this.label2);
-            this.tabAlbum.Controls.Add(this.btnSuaAlbums);
-            this.tabAlbum.Controls.Add(this.dataGridView1);
-            this.tabAlbum.Controls.Add(this.btnXoaAlbums);
-            this.tabAlbum.Controls.Add(this.btnThemAlbums);
-            this.tabAlbum.Location = new System.Drawing.Point(4, 31);
-            this.tabAlbum.Name = "tabAlbum";
-            this.tabAlbum.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAlbum.Size = new System.Drawing.Size(1153, 674);
-            this.tabAlbum.TabIndex = 1;
-            this.tabAlbum.Text = "Quản Lý Albums";
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Algerian", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(928, 241);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(217, 428);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "NGUYỄN ĐẠT \r\nTÀI";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSuaAlbums
-            // 
-            this.btnSuaAlbums.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaAlbums.Location = new System.Drawing.Point(950, 180);
-            this.btnSuaAlbums.Name = "btnSuaAlbums";
-            this.btnSuaAlbums.Size = new System.Drawing.Size(176, 58);
-            this.btnSuaAlbums.TabIndex = 2;
-            this.btnSuaAlbums.Text = "Sửa Albums";
-            this.btnSuaAlbums.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(922, 677);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // btnXoaAlbums
-            // 
-            this.btnXoaAlbums.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaAlbums.Location = new System.Drawing.Point(950, 116);
-            this.btnXoaAlbums.Name = "btnXoaAlbums";
-            this.btnXoaAlbums.Size = new System.Drawing.Size(176, 58);
-            this.btnXoaAlbums.TabIndex = 3;
-            this.btnXoaAlbums.Text = "Xóa Albums";
-            this.btnXoaAlbums.UseVisualStyleBackColor = true;
-            // 
-            // btnThemAlbums
-            // 
-            this.btnThemAlbums.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemAlbums.Location = new System.Drawing.Point(950, 52);
-            this.btnThemAlbums.Name = "btnThemAlbums";
-            this.btnThemAlbums.Size = new System.Drawing.Size(176, 58);
-            this.btnThemAlbums.TabIndex = 4;
-            this.btnThemAlbums.Text = "Thêm Albums";
-            this.btnThemAlbums.UseVisualStyleBackColor = true;
-            this.btnThemAlbums.Click += new System.EventHandler(this.btnThemAlbums_Click);
-            // 
-            // tabCaSi
-            // 
-            this.tabCaSi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tabCaSi.Controls.Add(this.label3);
-            this.tabCaSi.Controls.Add(this.btnSuaCaSi);
-            this.tabCaSi.Controls.Add(this.dgvCaSi);
-            this.tabCaSi.Controls.Add(this.btnXoaCaSi);
-            this.tabCaSi.Controls.Add(this.btnThemCaSi);
-            this.tabCaSi.Location = new System.Drawing.Point(4, 31);
-            this.tabCaSi.Name = "tabCaSi";
-            this.tabCaSi.Size = new System.Drawing.Size(1153, 674);
-            this.tabCaSi.TabIndex = 0;
-            this.tabCaSi.Text = "Quản Lý Ca Sĩ";
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Algerian", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(928, 241);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(217, 428);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "PHAN \r\nHỮU \r\nTRỌNG";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSuaCaSi
-            // 
-            this.btnSuaCaSi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaCaSi.Location = new System.Drawing.Point(952, 180);
-            this.btnSuaCaSi.Name = "btnSuaCaSi";
-            this.btnSuaCaSi.Size = new System.Drawing.Size(176, 58);
-            this.btnSuaCaSi.TabIndex = 2;
-            this.btnSuaCaSi.Text = "Sửa Ca Sĩ";
-            this.btnSuaCaSi.UseVisualStyleBackColor = true;
-            // 
-            // dgvCaSi
-            // 
-            this.dgvCaSi.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCaSi.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvCaSi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCaSi.Location = new System.Drawing.Point(0, 0);
-            this.dgvCaSi.Name = "dgvCaSi";
-            this.dgvCaSi.RowHeadersWidth = 51;
-            this.dgvCaSi.RowTemplate.Height = 24;
-            this.dgvCaSi.Size = new System.Drawing.Size(922, 674);
-            this.dgvCaSi.TabIndex = 5;
-            // 
-            // btnXoaCaSi
-            // 
-            this.btnXoaCaSi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaCaSi.Location = new System.Drawing.Point(952, 116);
-            this.btnXoaCaSi.Name = "btnXoaCaSi";
-            this.btnXoaCaSi.Size = new System.Drawing.Size(176, 58);
-            this.btnXoaCaSi.TabIndex = 3;
-            this.btnXoaCaSi.Text = "Xóa Ca Sĩ";
-            this.btnXoaCaSi.UseVisualStyleBackColor = true;
-            this.btnXoaCaSi.Click += new System.EventHandler(this.btnXoaCaSi_Click);
-            // 
-            // btnThemCaSi
-            // 
-            this.btnThemCaSi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemCaSi.Location = new System.Drawing.Point(952, 52);
-            this.btnThemCaSi.Name = "btnThemCaSi";
-            this.btnThemCaSi.Size = new System.Drawing.Size(176, 58);
-            this.btnThemCaSi.TabIndex = 4;
-            this.btnThemCaSi.Text = "Thêm Ca Sĩ";
-            this.btnThemCaSi.UseVisualStyleBackColor = true;
-            this.btnThemCaSi.Click += new System.EventHandler(this.btnThemCaSi_Click);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(0, 0);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(200, 100);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "tabPage4";
-            // 
-            // mySqlDataAdapter1
-            // 
-            this.mySqlDataAdapter1.DeleteCommand = null;
-            this.mySqlDataAdapter1.InsertCommand = null;
-            this.mySqlDataAdapter1.SelectCommand = null;
-            this.mySqlDataAdapter1.UpdateCommand = null;
-            // 
-            // tabQuanLyTaiKhoan
-            // 
-            this.tabQuanLyTaiKhoan.Location = new System.Drawing.Point(4, 31);
-            this.tabQuanLyTaiKhoan.Name = "tabQuanLyTaiKhoan";
-            this.tabQuanLyTaiKhoan.Size = new System.Drawing.Size(1153, 674);
-            this.tabQuanLyTaiKhoan.TabIndex = 2;
-            this.tabQuanLyTaiKhoan.Text = "Quản lý Tài Khoản";
-            this.tabQuanLyTaiKhoan.UseVisualStyleBackColor = true;
+            this.tabConTrol.Controls.Add(this.tabBaiHat);
+            this.tabConTrol.Controls.Add(this.tabAlbum);
+            this.tabConTrol.Controls.Add(this.tabCaSi);
+            this.tabConTrol.Controls.Add(this.tabQuanLyTaiKhoan);
+            this.tabConTrol.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabConTrol.Location = new System.Drawing.Point(0, 0);
+            this.tabConTrol.Name = "tabConTrol";
+            this.tabConTrol.SelectedIndex = 0;
+            this.tabConTrol.Size = new System.Drawing.Size(1161, 709);
+            this.tabConTrol.TabIndex = 1;
             // 
             // Form1
             // 
@@ -334,42 +338,42 @@
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.tabConTrol.ResumeLayout(false);
+            this.tabCaSi.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCaSi)).EndInit();
+            this.tabAlbum.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAlbums)).EndInit();
             this.tabBaiHat.ResumeLayout(false);
             this.tabBaiHat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaiHat)).EndInit();
-            this.tabAlbum.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabCaSi.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCaSi)).EndInit();
+            this.tabConTrol.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TabControl tabConTrol;
-        private System.Windows.Forms.TabPage tabAlbum;
-        private System.Windows.Forms.TabPage tabCaSi;
         private System.Windows.Forms.TabPage tabPage4;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
-        private System.Windows.Forms.Button btnSuaAlbums;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnXoaAlbums;
-        private System.Windows.Forms.Button btnThemAlbums;
-        private System.Windows.Forms.DataGridView dgvCaSi;
-        private System.Windows.Forms.TabPage tabBaiHat;
+        private System.Windows.Forms.TabPage tabQuanLyTaiKhoan;
+        private System.Windows.Forms.TabPage tabCaSi;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSuaCaSi;
+        private System.Windows.Forms.DataGridView dgvCaSi;
         private System.Windows.Forms.Button btnXoaCaSi;
         private System.Windows.Forms.Button btnThemCaSi;
+        private System.Windows.Forms.TabPage tabAlbum;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSuaAlbums;
+        private System.Windows.Forms.DataGridView dgvAlbums;
+        private System.Windows.Forms.Button btnXoaAlbums;
+        private System.Windows.Forms.Button btnThemAlbums;
+        private System.Windows.Forms.TabPage tabBaiHat;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtTimKiem;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.DataGridView dgvBaiHat;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.TextBox txtTimKiem;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabQuanLyTaiKhoan;
+        private System.Windows.Forms.TabControl tabConTrol;
     }
 }

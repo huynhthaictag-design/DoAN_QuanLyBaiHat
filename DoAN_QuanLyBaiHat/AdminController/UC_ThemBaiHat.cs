@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
-using DoAN_QuanLyBaiHat.AdminController; // Để dùng DatabaseConnection
+using DoAN_QuanLyBaiHat.AdminController;
 
 namespace DoAN_QuanLyBaiHat.UserControls
 {
@@ -18,13 +18,49 @@ namespace DoAN_QuanLyBaiHat.UserControls
         public UC_ThemBaiHat()
         {
             InitializeComponent();
+            // Tải danh sách ca sĩ ngay khi khởi tạo
+            LoadComboBoxCaSi();
         }
 
-        // --- 1. SỬA HÀM NÀY ĐỂ NHẬN ĐỦ 9 THAM SỐ (KHẮC PHỤC LỖI CS1501) ---
+        // --- 1. HÀM LOAD DANH SÁCH CA SĨ VÀO COMBOBOX ---
+        private void LoadComboBoxCaSi()
+        {
+            try
+            {
+                using (MySqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    // Lấy Tên Ca Sĩ để hiển thị
+                    string sql = "SELECT TenCS FROM casi";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // Gán dữ liệu vào ComboBox
+                    cbbCaSi.DataSource = dt;
+                    cbbCaSi.DisplayMember = "TenCS"; // Hiển thị tên
+                    cbbCaSi.ValueMember = "TenCS";   // Giá trị lấy cũng là tên (vì bảng baihat lưu tên)
+
+                    // Mặc định không chọn ai cả
+                    cbbCaSi.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách ca sĩ: " + ex.Message);
+            }
+        }
+
+        // --- 2. HÀM NHẬN DỮ LIỆU TỪ FORM CHA ---
         public void SetData(int mode, string id, string ten, string theloai, DateTime ngay, string loi, string duongdan, string album, string casi)
         {
             _flagMode = mode;
             _idBaiHat = id;
+
+            // Đảm bảo load lại danh sách ca sĩ mới nhất mỗi khi mở form
+            LoadComboBoxCaSi();
 
             if (mode == 2) // Chế độ Sửa
             {
@@ -34,10 +70,10 @@ namespace DoAN_QuanLyBaiHat.UserControls
                 dtpNgayDang.Value = ngay;
                 richLoiNhac.Text = loi;
                 txtDuongDan.Text = duongdan;
+               
 
-                // Điền thêm 2 cái mới
-                txtAlbums.Text = album;
-                txtCaSi.Text = casi;
+                // Gán giá trị cho ComboBox Ca Sĩ
+                cbbCaSi.Text = casi;
 
                 btnLuu.Text = "Cập Nhật";
             }
@@ -54,9 +90,8 @@ namespace DoAN_QuanLyBaiHat.UserControls
             txtTenBaiHat.Clear();
             richLoiNhac.Clear();
             txtDuongDan.Clear();
-            // Xóa trắng 2 ô mới
-            txtAlbums.Clear();
-            txtCaSi.Clear();
+       
+            cbbCaSi.SelectedIndex = -1; // Reset combobox ca sĩ
             cbbTheLoai.SelectedIndex = -1;
             dtpNgayDang.Value = DateTime.Now;
         }
@@ -64,7 +99,6 @@ namespace DoAN_QuanLyBaiHat.UserControls
         private void btnChonNhac_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
-            // Thêm các định dạng nhạc khác cho đầy đủ
             open.Filter = "Music Files|*.mp3;*.wav;*.wma|All Files|*.*";
             if (open.ShowDialog() == DialogResult.OK)
             {
@@ -72,10 +106,10 @@ namespace DoAN_QuanLyBaiHat.UserControls
             }
         }
 
-        // --- NÚT LƯU ĐÃ ĐƯỢC NÂNG CẤP ---
+        // --- 3. NÚT LƯU ---
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra dữ liệu đầu vào
+            // Kiểm tra dữ liệu đầu vào
             if (txtTenBaiHat.Text.Trim() == "")
             {
                 MessageBox.Show("Vui lòng nhập tên bài hát!");
@@ -83,44 +117,38 @@ namespace DoAN_QuanLyBaiHat.UserControls
                 return;
             }
 
-            // 2. XỬ LÝ FILE NHẠC (COPY VÀ TẠO ĐƯỜNG DẪN)
-            string duongDanLuuDB = txtDuongDan.Text; // Mặc định lấy giá trị hiện tại trong ô textbox
+            if (cbbCaSi.Text.Trim() == "")
+            {
+                MessageBox.Show("Vui lòng chọn Ca sĩ!");
+                cbbCaSi.Focus();
+                return;
+            }
+
+            // XỬ LÝ FILE NHẠC
+            string duongDanLuuDB = txtDuongDan.Text;
 
             try
             {
-                // Kiểm tra: Nếu đường dẫn trong TextBox là file từ ổ cứng (C:\...) thì mới thực hiện Copy.
-                // Nếu là đường dẫn cũ (MusicData\...) thì bỏ qua bước này.
                 if (File.Exists(txtDuongDan.Text) && Path.IsPathRooted(txtDuongDan.Text))
                 {
-                    // a. Tạo thư mục chứa nhạc nếu chưa có
                     string folderDich = Path.Combine(Application.StartupPath, "MusicData");
-                    if (!Directory.Exists(folderDich))
-                    {
-                        Directory.CreateDirectory(folderDich);
-                    }
+                    if (!Directory.Exists(folderDich)) Directory.CreateDirectory(folderDich);
 
-                    // b. Tạo tên file duy nhất (Tránh trùng lặp)
-                    // Ví dụ: 20231127_105012_EmCuaNgayHomQua.mp3
                     string tenFileGoc = Path.GetFileName(txtDuongDan.Text);
                     string tenFileMoi = DateTime.Now.ToString("yyyyMMdd_HHmmss") + "_" + tenFileGoc;
-
-                    // c. Đường dẫn đích để copy file vào
                     string duongDanDich = Path.Combine(folderDich, tenFileMoi);
 
-                    // d. Thực hiện Copy
                     File.Copy(txtDuongDan.Text, duongDanDich, true);
-
-                    // e. Cập nhật chuỗi để lưu vào Database (Lưu đường dẫn tương đối)
                     duongDanLuuDB = "MusicData\\" + tenFileMoi;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi copy nhạc: " + ex.Message);
-                return; // Dừng lại nếu copy lỗi
+                return;
             }
 
-            // 3. XỬ LÝ DATABASE
+            // XỬ LÝ DATABASE
             try
             {
                 using (MySqlConnection conn = DatabaseConnection.GetConnection())
@@ -130,30 +158,31 @@ namespace DoAN_QuanLyBaiHat.UserControls
 
                     if (_flagMode == 1) // THÊM MỚI
                     {
-                        sql = "INSERT INTO BaiHat (Ten_Bai_Hat, The_Loai, Ngay_Dang, Lyrics, DuongDan, Album, CaSi) " +
-                              "VALUES (@Ten, @TheLoai, @Ngay, @Loi, @Link, @Album, @CaSi)";
+                        // XÓA chữ "Album" và "@Album" ở dòng này để tránh lỗi khi thêm mới
+                        sql = "INSERT INTO BaiHat (Ten_Bai_Hat, The_Loai, Ngay_Dang, Lyrics, DuongDan, CaSi) " +
+                              "VALUES (@Ten, @TheLoai, @Ngay, @Loi, @Link, @CaSi)";
                     }
-                    else // SỬA (UPDATE)
+                    else // SỬA (UPDATE) - Đây là phần bạn đang bị lỗi
                     {
+                        // XÓA đoạn "Album=@Album," đi
+                        // Câu lệnh mới sẽ như sau:
                         sql = "UPDATE BaiHat SET Ten_Bai_Hat=@Ten, The_Loai=@TheLoai, Ngay_Dang=@Ngay, " +
-                              "Lyrics=@Loi, DuongDan=@Link, Album=@Album, CaSi=@CaSi WHERE Bai_Hat_Id=@Id";
+                              "Lyrics=@Loi, DuongDan=@Link, CaSi=@CaSi WHERE Bai_Hat_Id=@Id";
                     }
 
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    // Gán các tham số
                     cmd.Parameters.AddWithValue("@Ten", txtTenBaiHat.Text.Trim());
                     cmd.Parameters.AddWithValue("@TheLoai", cbbTheLoai.Text);
                     cmd.Parameters.AddWithValue("@Ngay", dtpNgayDang.Value);
                     cmd.Parameters.AddWithValue("@Loi", richLoiNhac.Text);
-
-                    // Quan trọng: Lưu đường dẫn đã xử lý ở trên
                     cmd.Parameters.AddWithValue("@Link", duongDanLuuDB);
+                  
 
-                    cmd.Parameters.AddWithValue("@Album", txtAlbums.Text);
-                    cmd.Parameters.AddWithValue("@CaSi", txtCaSi.Text);
+                    // Lấy tên ca sĩ từ ComboBox thay vì TextBox
+                    cmd.Parameters.AddWithValue("@CaSi", cbbCaSi.Text);
 
-                    if (_flagMode == 2) // Nếu là sửa thì cần ID
+                    if (_flagMode == 2)
                     {
                         cmd.Parameters.AddWithValue("@Id", _idBaiHat);
                     }
@@ -161,27 +190,23 @@ namespace DoAN_QuanLyBaiHat.UserControls
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Thao tác thành công!");
-
-                    // Gọi sự kiện để Form cha biết mà load lại dữ liệu
                     OnLuuThanhCong?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi Database: " + ex.Message + "\n(Kiểm tra lại xem đã chạy lệnh SQL thêm cột Album/CaSi chưa?)");
+                MessageBox.Show("Lỗi Database: " + ex.Message);
             }
         }
 
-     
-
         private void btnQuayLai_Click(object sender, EventArgs e)
         {
-
+            OnHuy?.Invoke(this, EventArgs.Empty);
         }
 
         private void UC_ThemBaiHat_Load(object sender, EventArgs e)
         {
-
+            // Có thể gọi LoadComboBoxCaSi() ở đây nếu muốn chắc chắn
         }
     }
 }

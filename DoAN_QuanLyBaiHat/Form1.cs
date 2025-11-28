@@ -5,10 +5,8 @@ using MySql.Data.MySqlClient;
 
 namespace DoAN_QuanLyBaiHat
 {
-    // Từ khóa "partial" rất quan trọng
     public partial class Form1 : Form
     {
-        // Các biến dùng chung cho cả BaiHat và CaSi
         DataSet ds = new DataSet();
         MySqlDataAdapter daBaiHat;
 
@@ -19,36 +17,30 @@ namespace DoAN_QuanLyBaiHat
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadBaiHat();     // Hàm này nằm ở file Form1.BaiHat.cs
-            LoadDataCaSi();   // Hàm này nằm ở file Form1.CaSi.cs
+          
+            LoadBaiHat();       
+            LoadDataCaSi();    
+            LoadDataAlbums();  
+
             LoadTabTaiKhoan();
-           
         }
+
         private void LoadTabTaiKhoan()
         {
             DoAN_QuanLyBaiHat.AdminController.UC_QuanLyTaiKhoan ucTK = new DoAN_QuanLyBaiHat.AdminController.UC_QuanLyTaiKhoan();
-
-            // Cài đặt lấp đầy
             ucTK.Dock = DockStyle.Fill;
-
-            // Xóa cái cũ đi trước khi thêm cái mới (Tránh bị chồng)
             tabQuanLyTaiKhoan.Controls.Clear();
-
-            // Thêm vào Tab
             tabQuanLyTaiKhoan.Controls.Add(ucTK);
-
-            // Đưa lên trên cùng cho chắc chắn
             ucTK.BringToFront();
         }
 
-        // --- HÀM HỖ TRỢ DÙNG CHUNG (HELPER) ---
         private void DongUserControl(UserControl uc)
         {
             if (uc.Parent != null)
             {
-                uc.Parent.Controls.Remove(uc); // Gỡ bỏ khỏi giao diện
+                uc.Parent.Controls.Remove(uc);
             }
-            uc.Dispose(); // Giải phóng bộ nhớ
+            uc.Dispose();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -58,20 +50,73 @@ namespace DoAN_QuanLyBaiHat
 
         public void VeManHinhChinh()
         {
-     
             for (int i = tabBaiHat.Controls.Count - 1; i >= 0; i--)
             {
-    
                 if (tabBaiHat.Controls[i] is UserControl)
                 {
-             
                     tabBaiHat.Controls.RemoveAt(i);
                 }
             }
-
-           
             dgvBaiHat.Visible = true;
             LoadBaiHat();
+        }
+
+      
+
+        // File: Form1.Albums.cs (hoặc Form1.cs tùy nơi tạo sự kiện)
+
+        private void dgvAlbums_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra nếu click vào dòng hợp lệ (không phải tiêu đề)
+            if (e.RowIndex >= 0 && dgvAlbums.CurrentRow != null)
+            {
+                // Lấy ID Album và Tên Album
+                string abId = dgvAlbums.CurrentRow.Cells["Ab_Id"].Value.ToString();
+                string tenAb = dgvAlbums.CurrentRow.Cells["Ten_Ab"].Value.ToString();
+
+                // Gọi hàm để lấy danh sách bài hát
+                LoadBaiHatCuaAlbum(abId, tenAb);
+            }
+        }
+
+        // Hàm phụ để tải và hiển thị bài hát
+        private void LoadBaiHatCuaAlbum(string abId, string tenAlbum)
+        {
+            try
+            {
+                using (MySqlConnection conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    // Lấy tên bài hát thuộc album này
+                    string sql = "SELECT Ten_Bai_Hat FROM baihat WHERE ab_Id = @AbId";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@AbId", abId);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    string danhSachBaiHat = "";
+                    int dem = 0;
+
+                    while (reader.Read())
+                    {
+                        dem++;
+                        danhSachBaiHat += $"{dem}. {reader["Ten_Bai_Hat"]}\n";
+                    }
+
+                    if (dem > 0)
+                    {
+                        MessageBox.Show($"Danh sách bài hát trong Album '{tenAlbum}':\n\n{danhSachBaiHat}", "Chi tiết Album");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Album '{tenAlbum}' chưa có bài hát nào.", "Chi tiết Album");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải bài hát: " + ex.Message);
+            }
         }
     }
 }

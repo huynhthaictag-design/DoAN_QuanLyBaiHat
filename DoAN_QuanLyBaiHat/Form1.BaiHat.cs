@@ -35,7 +35,10 @@ namespace DoAN_QuanLyBaiHat
                         dgvBaiHat.Columns["Ten_Bai_Hat"].Width = 200;
                     }
                     if (dgvBaiHat.Columns.Contains("CaSi")) dgvBaiHat.Columns["CaSi"].HeaderText = "Ca Sĩ";
-                    if (dgvBaiHat.Columns.Contains("Album")) dgvBaiHat.Columns["Album"].HeaderText = "Album";
+                    if (dgvBaiHat.Columns.Contains("Album"))
+                    {
+                        dgvBaiHat.Columns["Album"].Visible = false;
+                    }
                     if (dgvBaiHat.Columns.Contains("The_Loai")) dgvBaiHat.Columns["The_Loai"].HeaderText = "Thể Loại";
                     if (dgvBaiHat.Columns.Contains("Ngay_Dang")) dgvBaiHat.Columns["Ngay_Dang"].HeaderText = "Ngày Đăng";
                 }

@@ -108,8 +108,9 @@ namespace DoAN_QuanLyBaiHat
         // Nút chuyển sang đăng nhập (nếu user lỡ bấm vào form đăng ký)
         private void lkDangNhap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormDangNhap dn = new FormDangNhap();
-            dn.ShowDialog();
+           
+         
+            this.Close();
         }
     }
 }
