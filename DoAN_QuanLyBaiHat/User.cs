@@ -32,6 +32,7 @@ namespace DoAN_QuanLyBaiHat
 
         private void btnBaiHat_Click(object sender, EventArgs e)
         {
+            // Tạo UC mới
             UC_BaiHat uC_BaiHat = new UC_BaiHat();
             AddUserControl(uC_BaiHat);
         }
