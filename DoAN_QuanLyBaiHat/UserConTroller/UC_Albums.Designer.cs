@@ -62,6 +62,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "UC_Albums";
             this.Size = new System.Drawing.Size(970, 615);
+            this.Load += new System.EventHandler(this.UC_Albums_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
