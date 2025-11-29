@@ -1,4 +1,4 @@
-﻿namespace DoAN_QuanLyBaiHat
+﻿namespace DoAN_QuanLyBaiHat.UserConTroller
 {
     partial class UC_Albums
     {

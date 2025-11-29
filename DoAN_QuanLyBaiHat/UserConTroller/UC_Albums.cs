@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using MySql.Data.MySqlClient;
 
-namespace DoAN_QuanLyBaiHat
+namespace DoAN_QuanLyBaiHat.UserConTroller
 {
     // 1. Sửa tên class thành UC_Albums cho trùng với tên file
     public partial class UC_Albums : UserControl

@@ -13,7 +13,7 @@ namespace DoAN_QuanLyBaiHat
         private static string strConn = "Server=localhost;" +
             "Database=qlbaihat;" +
             "User=root;" +
-            "Password=vertrigo;" +  // <-- QUAN TRỌNG: Phải có 1234 ở đây
+            "Password=1234;" +  // <-- QUAN TRỌNG: Phải có 1234 ở đây
             "Charset=utf8;";
 
         public static MySqlConnection GetConnection()
