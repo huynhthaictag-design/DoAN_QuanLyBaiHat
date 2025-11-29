@@ -118,5 +118,14 @@ namespace DoAN_QuanLyBaiHat
                 MessageBox.Show("Lỗi tải bài hát: " + ex.Message);
             }
         }
+
+        private void btnDangXuat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+                FormDangNhap fdn = new FormDangNhap();
+                fdn.ShowDialog();
+            this.Show();
+            
+        }
     }
 }

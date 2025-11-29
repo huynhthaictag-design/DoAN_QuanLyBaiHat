@@ -52,6 +52,7 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.tabConTrol = new System.Windows.Forms.TabControl();
+            this.btnDangXuat = new System.Windows.Forms.Button();
             this.tabCaSi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCaSi)).BeginInit();
             this.tabAlbum.SuspendLayout();
@@ -228,6 +229,7 @@
             // tabBaiHat
             // 
             this.tabBaiHat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.tabBaiHat.Controls.Add(this.btnDangXuat);
             this.tabBaiHat.Controls.Add(this.label4);
             this.tabBaiHat.Controls.Add(this.txtTimKiem);
             this.tabBaiHat.Controls.Add(this.label1);
@@ -327,6 +329,16 @@
             this.tabConTrol.Size = new System.Drawing.Size(1161, 709);
             this.tabConTrol.TabIndex = 1;
             // 
+            // btnDangXuat
+            // 
+            this.btnDangXuat.Location = new System.Drawing.Point(981, 353);
+            this.btnDangXuat.Name = "btnDangXuat";
+            this.btnDangXuat.Size = new System.Drawing.Size(114, 29);
+            this.btnDangXuat.TabIndex = 10;
+            this.btnDangXuat.Text = "Đăng Xuất";
+            this.btnDangXuat.UseVisualStyleBackColor = true;
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -375,5 +387,6 @@
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.TabControl tabConTrol;
+        private System.Windows.Forms.Button btnDangXuat;
     }
 }
