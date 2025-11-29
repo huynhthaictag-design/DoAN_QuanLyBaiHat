@@ -180,6 +180,12 @@
     <Compile Include="AdminController\UC_ThemBaiHat.Designer.cs">
       <DependentUpon>UC_ThemBaiHat.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserConTroller\UC_Playlist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserConTroller\UC_Playlist.Designer.cs">
+      <DependentUpon>UC_Playlist.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminController\UC_QuanLyTaiKhoan.resx">
       <DependentUpon>UC_QuanLyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminController\UC_ThemBaiHat.resx">
       <DependentUpon>UC_ThemBaiHat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserConTroller\UC_Playlist.resx">
+      <DependentUpon>UC_Playlist.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\DoAN_QuanLyBaiHat.exe.config" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
